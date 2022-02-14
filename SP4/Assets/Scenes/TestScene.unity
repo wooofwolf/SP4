@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76423a13325c0f841bf0f202b8007b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1508275486}
+  player: {fileID: 1788552862}
 --- !u!4 &189909520
 Transform:
   m_ObjectHideFlags: 0
@@ -2554,11 +2554,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1508275486 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4289473201218343960, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
-  m_PrefabInstance: {fileID: 4289473200574374150}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1514604220
 GameObject:
   m_ObjectHideFlags: 0
@@ -2824,6 +2819,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784360242}
   m_CullTransparentMesh: 1
+--- !u!4 &1788552862 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4289473201218343960, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
+  m_PrefabInstance: {fileID: 4289473200574374150}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4289473200574374150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2876,6 +2876,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4289473200693411869, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4289473200693411869, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 189909520}
@@ -2887,5 +2891,6 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 1127385769}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4218059758689047686, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}

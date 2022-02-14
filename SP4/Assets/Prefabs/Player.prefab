@@ -283,8 +283,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 3
+  CurrentHealth: 0
   Damage: 1
   AttackSpeed: 1
+  AttackDelay: 0.6
+  healthbar: {fileID: 0}
   Jumps: 2
 --- !u!1 &4289473201218343963
 GameObject:

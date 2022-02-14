@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    
+
     public Transform playerCam;
     public Transform orientation;
     private Rigidbody rb;
@@ -171,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
 
             jumpcount += 1;
 
-            
+
         }
 
         if (grounded)
