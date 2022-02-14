@@ -929,6 +929,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Switch
       objectReference: {fileID: 0}
+    - target: {fileID: 5820110440626583448, guid: 38acc48068d90a344a8e9d1e27724b31, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38acc48068d90a344a8e9d1e27724b31, type: 3}
 --- !u!1001 &795474101
@@ -1770,7 +1774,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ef0b835e4a9d947baba381a5403286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkedSwitch: {fileID: 1503776602}
+  inputMethod: {fileID: 1503776602}
+  doorSpeed: 2
 --- !u!4 &1305994419
 Transform:
   m_ObjectHideFlags: 0

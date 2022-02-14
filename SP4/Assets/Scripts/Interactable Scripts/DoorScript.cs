@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class DoorScript : MonoBehaviour
 {
-    public GameObject linkedSwitch;
+    public GameObject inputMethod;
+    public float doorSpeed = 2.0f;
     bool doorStatus;
 
     Vector3 closedPosition;
     Vector3 openPosition;
 
+    float interpolationModifier;
+
     // Start is called before the first frame update
     void Start()
     {
-
         closedPosition = gameObject.transform.position;
         openPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 2.5f, gameObject.transform.position.z);
     }
@@ -21,18 +23,23 @@ public class DoorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        doorStatus = linkedSwitch.transform.Find("CollisionArea").GetComponent<SwitchCollision>().GetSwitchStatus();
+        doorStatus = inputMethod.transform.Find("CollisionArea").GetComponent<SwitchCollision>().GetSwitchStatus();
 
         if (doorStatus)
         {
-            gameObject.transform.position = openPosition;
+            if (interpolationModifier <= 1.0f)
+            {
+                interpolationModifier += Time.deltaTime * doorSpeed;
+            }
         }
         else
         {
-            gameObject.transform.position = closedPosition;
+            if (interpolationModifier >= 0.0f)
+            {
+                interpolationModifier -= Time.deltaTime * doorSpeed;
+            }
         }
-
-        //gameObject.transform.position = interpolatedPosition;
-
+        
+        gameObject.transform.position = Vector3.Lerp(closedPosition, openPosition, interpolationModifier);
     }
 }
