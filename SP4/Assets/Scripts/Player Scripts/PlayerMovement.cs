@@ -152,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         //if (grounded && readyToJump)
-        if (readyToJump && jumpcount <= jumplimit)
+        if (readyToJump && jumpcount <= gameObject.GetComponent<PlayerStats>().Jumps)
         {
             //readyToJump = true;
 
