@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
 
     private float xRotation;
-    private float sensitivity = 50f;
+    private float sensitivity = 100f;
     private float sensMultiplier = 1f;
     public float moveSpeed = 3000;
     public float maxSpeed = 20;
