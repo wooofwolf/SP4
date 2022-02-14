@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private float sensitivity = 100f;
     private float sensMultiplier = 1f;
     public float moveSpeed = 3000;
+    public float crouchMoveSpeed = 1500;
     public float maxSpeed = 20;
     public bool grounded;
     public LayerMask whatIsGround;
@@ -88,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
             if (grounded)
             {
                 rb.AddForce(orientation.transform.forward * slideForce);
+
             }
         }
     }
@@ -141,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
         // moving while sliding
         if (grounded && crouching) multiplierV = 0f;
 
-        //moving player
+        //applying force to move player
         rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
         rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
 
@@ -211,7 +213,13 @@ public class PlayerMovement : MonoBehaviour
         //slowing down aft player slides
         if (crouching)
         {
-            rb.AddForce(moveSpeed * Time.deltaTime * -rb.velocity.normalized * slideCounterMovement);
+            //rb.AddForce(moveSpeed * Time.deltaTime * -rb.velocity.normalized * slideCounterMovement);
+
+            float multiplier = 1f, multiplierV = 1f;
+
+            rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
+            rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
+
             return;
         }
 
