@@ -8,14 +8,17 @@ public class CharacterStats : MonoBehaviour
     public float AttackSpeed = 1f;
     public float AttackDelay = 0.6f;
 
+    public Healthbar healthbar;
     private void Awake()
     {
         CurrentHealth = MaxHealth;
+        healthbar.SetMaxHealth(MaxHealth);
     }
 
     public void TakeDamage(int damage)
     {
         CurrentHealth -= damage;
+        healthbar.SetHealth(CurrentHealth);
         if (CurrentHealth <= 0)
         {
             Die();
