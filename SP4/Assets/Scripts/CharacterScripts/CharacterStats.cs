@@ -5,15 +5,16 @@ public class CharacterStats : MonoBehaviour
     public int MaxHealth = 3;
     public int CurrentHealth { get; private set; }
     public int Damage = 1;
+    public float AttackSpeed = 1f;
 
     private void Awake()
     {
         CurrentHealth = MaxHealth;
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
-        CurrentHealth -= 1;
+        CurrentHealth -= damage;
         if (CurrentHealth <= 0)
         {
             Die();
