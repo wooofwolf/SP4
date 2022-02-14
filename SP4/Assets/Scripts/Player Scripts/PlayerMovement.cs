@@ -38,6 +38,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 normalVector = Vector3.up;
     private Vector3 wallNormalVector;
 
+    public float jumpcount; //amount of jumps counted
+    public float jumplimit; //limit of jumps
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -141,13 +144,17 @@ public class PlayerMovement : MonoBehaviour
         //moving player
         rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
         rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
+
+        jumplimit = 2;
+
     }
 
     private void Jump()
     {
-        if (grounded && readyToJump)
+        //if (grounded && readyToJump)
+        if (readyToJump && jumpcount <= jumplimit)
         {
-            readyToJump = false;
+            //readyToJump = true;
 
             //jump forces
             rb.AddForce(Vector2.up * jumpForce * .5f);
@@ -161,6 +168,15 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector3(vel.x, vel.y / 2, vel.z);
 
             Invoke(nameof(ResetJump), jumpCooldown);
+
+            jumpcount += 1;
+
+            
+        }
+
+        if (grounded)
+        {
+            jumpcount = 0;
         }
     }
 
