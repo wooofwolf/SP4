@@ -266,7 +266,7 @@ MonoBehaviour:
   counterMovement: 0.175
   maxSlopeAngle: 35
   slideForce: 400
-  slideCounterMovement: 0.2
+  slideCounterMovement: 0.1
   jumpForce: 350
   jumpcount: 0
   jumplimit: 0
@@ -284,8 +284,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 3
   Damage: 1
+  AttackSpeed: 1
   Jumps: 2
-  hp: 3
 --- !u!1 &4289473201218343963
 GameObject:
   m_ObjectHideFlags: 0
