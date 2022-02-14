@@ -5,5 +5,4 @@ using UnityEngine;
 public class PlayerStats : CharacterStats
 {
     public int Jumps = 2;
-    public int hp = 3;
 }
