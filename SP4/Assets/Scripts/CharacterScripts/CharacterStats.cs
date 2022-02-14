@@ -5,6 +5,7 @@ public class CharacterStats : MonoBehaviour
     public int MaxHealth = 3;
     public int CurrentHealth { get; private set; }
     public int Damage = 1;
+    public float AttackSpeed = 1f;
     public Healthbar healthbar;
     private void Awake()
     {
@@ -12,9 +13,9 @@ public class CharacterStats : MonoBehaviour
         healthbar.SetMaxHealth(MaxHealth);
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
-        CurrentHealth -= 1;
+        CurrentHealth -= damage;
         healthbar.SetHealth(CurrentHealth);
         if (CurrentHealth <= 0)
         {
