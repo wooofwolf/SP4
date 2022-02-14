@@ -7,5 +7,6 @@ public class EnemyStats : CharacterStats
     private void Awake()
     {
         MaxHealth = 1;
+        CurrentHealth = MaxHealth;
     }
 }
