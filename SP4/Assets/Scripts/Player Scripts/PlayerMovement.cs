@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 550f;
 
     private bool readyToDash = true;
-    private float dashCooldown = 1.0f;
+    public float dashCooldown = 1.0f;
     public float dashForce = 550f;
 
     float x, y;
