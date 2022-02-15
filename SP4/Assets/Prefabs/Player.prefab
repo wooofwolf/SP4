@@ -273,6 +273,8 @@ MonoBehaviour:
   dashForce: 4000
   jumpcount: 0
   jumplimit: 0
+  maxDoubleJumps: 0
+  noOfDoubleJumpsLeft: 0
 --- !u!114 &4918836984031775284
 MonoBehaviour:
   m_ObjectHideFlags: 0
