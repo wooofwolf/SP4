@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         {
             dashCDUI += Time.deltaTime;
         }
-    }
+    
 
         if (rb.velocity.y < 0)
         {
