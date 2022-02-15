@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private float sensitivity = 100f;
     private float sensMultiplier = 1f;
     public float moveSpeed = 3000;
-    public float crouchMoveSpeed = 1500;
+    public float crouchMoveSpeed = 700;
     public float maxSpeed = 20;
     public bool grounded;
     public LayerMask whatIsGround;
@@ -33,8 +33,12 @@ public class PlayerMovement : MonoBehaviour
     private float jumpCooldown = 0.25f;
     public float jumpForce = 550f;
 
+    private bool readyToDash = true;
+    private float dashCooldown = 1.0f;
+    public float dashForce = 550f;
+
     float x, y;
-    bool jumping, sprinting, crouching;
+    bool jumping, sprinting, crouching, dashing;
 
     private Vector3 normalVector = Vector3.up;
     private Vector3 wallNormalVector;
@@ -72,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
         y = Input.GetAxisRaw("Vertical");
         jumping = Input.GetButton("Jump");
         crouching = Input.GetKey(KeyCode.LeftControl);
+        dashing = Input.GetKey(KeyCode.LeftShift);
 
         //Crouching
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -112,8 +117,11 @@ public class PlayerMovement : MonoBehaviour
         //Counteract sliding 
         CounterMovement(x, y, mag);
 
-        //bhop
+        //jumping
         if (readyToJump && jumping) Jump();
+
+        //dashing
+        if (dashing && readyToDash) Dash();
 
         //Set max speed
         float maxSpeed = this.maxSpeed;
@@ -156,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         //if (grounded && readyToJump)
         if (readyToJump && jumpcount <= gameObject.GetComponent<PlayerStats>().Jumps)
         {
-            //readyToJump = true;
+            //readyToJump = false;
 
             //jump forces
             rb.AddForce(Vector2.up * jumpForce * .5f);
@@ -181,10 +189,51 @@ public class PlayerMovement : MonoBehaviour
             jumpcount = 0;
         }
     }
+    private void Dash()
+    {
+        if (readyToDash)
+        {
+
+            //Vector2 mag = FindVelRelativeToLook();
+            //float xMag = mag.x, yMag = mag.y;
+
+            //float multiplier = 1f, multiplierV = 1f;
+
+            //rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
+            //rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
+
+            readyToDash = false;
+
+            if (grounded)
+            {
+                rb.AddForce(orientation.transform.forward * dashForce * 5);
+            }
+            if (!grounded)
+            {
+                rb.AddForce(orientation.transform.forward * dashForce * 0.3f);
+            }
+
+            //rb.AddForce(orientation.transform.right * dashForce);
+            //rb.AddForce(orientation.transform.right * dashForce * 0.5f);
+
+            //Vector3 vel = rb.velocity;
+            //if (rb.velocity.x < 0.5f && rb.velocity.z < 0.5f)
+            //    rb.velocity = new Vector3(0, vel.y, 0);
+            //else if (rb.velocity.x > 0 && rb.velocity.z > 0)
+            //    rb.velocity = new Vector3(vel.x / 2, vel.y, vel.z / 2);
+
+            Invoke(nameof(ResetDash), dashCooldown);
+        }
+    }
 
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    private void ResetDash()
+    {
+        readyToDash = true;
     }
 
     private float desiredX;
@@ -212,9 +261,18 @@ public class PlayerMovement : MonoBehaviour
 
         //slowing down aft player slides
         if (crouching)
-        {
-            //rb.AddForce(moveSpeed * Time.deltaTime * -rb.velocity.normalized * slideCounterMovement);
+        { 
+            //if (slideForce < 200)
+            //{
+                //float multiplier = 1f, multiplierV = 1f;
 
+                //rb.AddForce(orientation.transform.forward * y * crouchMoveSpeed * Time.deltaTime * multiplier * multiplierV);
+                //rb.AddForce(orientation.transform.right * x * crouchMoveSpeed * Time.deltaTime * multiplier);
+            //}
+            //else
+            //{
+                //rb.AddForce(moveSpeed * Time.deltaTime * -rb.velocity.normalized * slideCounterMovement);
+            //}
             float multiplier = 1f, multiplierV = 1f;
 
             rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
