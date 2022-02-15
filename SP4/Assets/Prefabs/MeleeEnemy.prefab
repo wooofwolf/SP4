@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1102379617484088569}
   - component: {fileID: 1102379617484088568}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: MeleeEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookRadius: 10
+  shootRadius: 5
   player: {fileID: 0}
+  ranged: 0
 --- !u!114 &1102379617484088569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,8 +168,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 3
+  CurrentHealth: 0
   Damage: 1
   AttackSpeed: 1
+  AttackDelay: 0.6
+  healthbar: {fileID: 0}
 --- !u!114 &1102379617484088568
 MonoBehaviour:
   m_ObjectHideFlags: 0
