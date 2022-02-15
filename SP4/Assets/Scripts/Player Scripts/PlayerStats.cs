@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : CharacterStats
 {
-    public int Jumps = 2;
+    public int DoubleJumps = 1;
 
     public override void Die()
     {

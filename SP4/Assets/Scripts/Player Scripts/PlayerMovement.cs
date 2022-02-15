@@ -30,8 +30,6 @@ public class PlayerMovement : MonoBehaviour
     public float slideCounterMovement = 0.1f;
 
     private bool canDoubleJump = false;
-    private bool readyToJump = true;
-    private float jumpCooldown = 0.25f;
     public float jumpForce = 550f;
 
     private bool readyToDash = true;
@@ -44,14 +42,16 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 normalVector = Vector3.up;
     private Vector3 wallNormalVector;
 
-    public float jumpcount; //amount of jumps counted
-    public float jumplimit; //limit of jumps
-    public int maxDoubleJumps;
-    public int noOfDoubleJumpsLeft;
+    private int maxDoubleJumps;
+    private int noOfDoubleJumpsLeft;
+
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMulitplier = 2f;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        maxDoubleJumps = GetComponent<PlayerStats>().DoubleJumps;
         noOfDoubleJumpsLeft = maxDoubleJumps;
     }
 
@@ -72,6 +72,15 @@ public class PlayerMovement : MonoBehaviour
     {
         MyInput();
         Look();
+
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMulitplier - 1) * Time.deltaTime;
+        }
     }
 
     private void MyInput()
@@ -133,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         float maxSpeed = this.maxSpeed;
 
         //sliding down ramp
-        if (crouching && grounded && readyToJump)
+        if (crouching && grounded)
         {
             rb.AddForce(Vector3.down * Time.deltaTime * 3000);
             return;
@@ -160,9 +169,6 @@ public class PlayerMovement : MonoBehaviour
         //applying force to move player
         rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
         rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
-
-        jumplimit = 2;
-
     }
 
     private void Jump()
@@ -187,34 +193,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(Vector3.up * jumpForce);
             }
         }
-
-        ////if (grounded && readyToJump)
-        //if (readyToJump && jumpcount <= gameObject.GetComponent<PlayerStats>().Jumps)
-        //{
-        //    //readyToJump = false;
-
-        //    //jump forces
-        //    rb.AddForce(Vector2.up * jumpForce * .5f);
-        //    rb.AddForce(normalVector * jumpForce * 0.5f);
-
-        //    //resetting y velocity
-        //    Vector3 vel = rb.velocity;
-        //    if (rb.velocity.y < 0.5f)
-        //        rb.velocity = new Vector3(vel.x, 0, vel.z);
-        //    else if (rb.velocity.y > 0)
-        //        rb.velocity = new Vector3(vel.x, vel.y / 2, vel.z);
-
-        //    Invoke(nameof(ResetJump), jumpCooldown);
-
-        //    jumpcount += 1;
-
-
-        //}
-
-        //if (grounded)
-        //{
-        //    jumpcount = 0;
-        //}
     }
     private void Dash()
     {
@@ -251,11 +229,6 @@ public class PlayerMovement : MonoBehaviour
 
             Invoke(nameof(ResetDash), dashCooldown);
         }
-    }
-
-    private void ResetJump()
-    {
-        readyToJump = true;
     }
 
     private void ResetDash()
