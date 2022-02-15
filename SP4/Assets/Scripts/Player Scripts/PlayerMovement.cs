@@ -29,8 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public float slideForce = 400;
     public float slideCounterMovement = 0.1f;
 
-    private bool readyToJump = true;
-    private float jumpCooldown = 0.25f;
+    private bool canDoubleJump = false;
     public float jumpForce = 550f;
 
     private bool readyToDash = true;
@@ -44,12 +43,17 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 normalVector = Vector3.up;
     private Vector3 wallNormalVector;
 
-    public float jumpcount; //amount of jumps counted
-    public float jumplimit; //limit of jumps
+    private int maxDoubleJumps;
+    private int noOfDoubleJumpsLeft;
+
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMulitplier = 2f;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        maxDoubleJumps = GetComponent<PlayerStats>().DoubleJumps;
+        noOfDoubleJumpsLeft = maxDoubleJumps;
     }
 
     void Start()
@@ -75,11 +79,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMulitplier - 1) * Time.deltaTime;
+        }
+    }
+
     private void MyInput()
     {
         x = Input.GetAxisRaw("Horizontal");
         y = Input.GetAxisRaw("Vertical");
-        jumping = Input.GetButton("Jump");
         crouching = Input.GetKey(KeyCode.LeftControl);
         dashing = Input.GetKey(KeyCode.LeftShift);
 
@@ -88,6 +101,12 @@ public class PlayerMovement : MonoBehaviour
             StartCrouch();
         if (Input.GetKeyUp(KeyCode.LeftControl))
             StopCrouch();
+
+        // Jumping
+        if (Input.GetButtonDown("Jump"))
+        {
+            Jump();
+        }
     }
 
     private void StartCrouch()
@@ -122,9 +141,6 @@ public class PlayerMovement : MonoBehaviour
         //Counteract sliding 
         CounterMovement(x, y, mag);
 
-        //jumping
-        if (readyToJump && jumping) Jump();
-
         //dashing
         if (dashing && readyToDash) Dash();
 
@@ -132,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
         float maxSpeed = this.maxSpeed;
 
         //sliding down ramp
-        if (crouching && grounded && readyToJump)
+        if (crouching && grounded)
         {
             rb.AddForce(Vector3.down * Time.deltaTime * 3000);
             return;
@@ -159,39 +175,29 @@ public class PlayerMovement : MonoBehaviour
         //applying force to move player
         rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
         rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
-
-        jumplimit = 2;
-
     }
 
     private void Jump()
     {
-        //if (grounded && readyToJump)
-        if (readyToJump && jumpcount <= gameObject.GetComponent<PlayerStats>().Jumps)
-        {
-            //readyToJump = false;
-
-            //jump forces
-            rb.AddForce(Vector2.up * jumpForce * .5f);
-            rb.AddForce(normalVector * jumpForce * 0.5f);
-
-            //resetting y velocity
-            Vector3 vel = rb.velocity;
-            if (rb.velocity.y < 0.5f)
-                rb.velocity = new Vector3(vel.x, 0, vel.z);
-            else if (rb.velocity.y > 0)
-                rb.velocity = new Vector3(vel.x, vel.y / 2, vel.z);
-
-            Invoke(nameof(ResetJump), jumpCooldown);
-
-            jumpcount += 1;
-
-
-        }
-
         if (grounded)
         {
-            jumpcount = 0;
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            rb.AddForce(Vector3.up * jumpForce);
+            canDoubleJump = true;
+            noOfDoubleJumpsLeft = maxDoubleJumps;
+        }
+        else
+        {
+            if (canDoubleJump)
+            {
+                noOfDoubleJumpsLeft -= 1;
+                if (noOfDoubleJumpsLeft <= 0)
+                {
+                    canDoubleJump = false;
+                }
+                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                rb.AddForce(Vector3.up * jumpForce);
+            }
         }
     }
     private void Dash()
@@ -229,11 +235,6 @@ public class PlayerMovement : MonoBehaviour
 
             Invoke(nameof(ResetDash), dashCooldown);
         }
-    }
-
-    private void ResetJump()
-    {
-        readyToJump = true;
     }
 
     private void ResetDash()

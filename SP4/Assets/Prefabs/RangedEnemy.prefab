@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67aaaab0c01c684fbbfe2799dba17be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookRadius: 10
-  shootRadius: 5
+  lookRadius: 20
+  shootRadius: 10
   player: {fileID: 0}
   ranged: 1
 --- !u!114 &1102379617484088569
