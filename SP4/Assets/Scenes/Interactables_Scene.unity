@@ -2602,7 +2602,7 @@ PrefabInstance:
       objectReference: {fileID: 1280930409}
     - target: {fileID: 3407629937204467475, guid: 3ca4f830dbe1e83448e65deb58b4fceb, type: 3}
       propertyPath: fanPushForce
-      value: 25
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5162240833984952852, guid: 3ca4f830dbe1e83448e65deb58b4fceb, type: 3}
       propertyPath: m_RootOrder
