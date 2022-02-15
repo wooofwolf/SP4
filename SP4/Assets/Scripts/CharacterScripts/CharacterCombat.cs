@@ -28,11 +28,11 @@ public class CharacterCombat : MonoBehaviour
         }
     }
 
-    public void RangedAttack()
+    public void RangedAttack(Transform target)
     {
         if (attackCooldown <= 0f)
         {
-            myProjectile.Shoot();
+            myProjectile.Shoot(target);
             attackCooldown = myStats.AttackSpeed;
         }
     }

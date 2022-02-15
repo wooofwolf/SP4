@@ -8,9 +8,9 @@ public class EnemyShooting : MonoBehaviour
     public float shootForce;
     public float spread;
 
-    public void Shoot()
+    public void Shoot(Transform target)
     {
-        Ray ray = new Ray(transform.position, transform.forward);
+        Ray ray = new Ray(transform.position, target.position - transform.position);
         RaycastHit hit;
 
         Vector3 targetPoint;

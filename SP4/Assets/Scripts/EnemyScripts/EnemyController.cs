@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour
                         // Stop moving
                         agent.SetDestination(transform.position);
                         // Shoot the player
-                        combat.RangedAttack();
+                        combat.RangedAttack(player);
                         // Face the player
                         FaceTarget();
                     }
