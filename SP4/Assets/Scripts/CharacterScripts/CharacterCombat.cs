@@ -5,11 +5,13 @@ using UnityEngine;
 public class CharacterCombat : MonoBehaviour
 {
     private CharacterStats myStats;
+    private EnemyShooting myProjectile;
     private float attackCooldown = 0f;
 
     private void Start()
     {
         myStats = GetComponent<CharacterStats>();
+        myProjectile = GetComponent<EnemyShooting>();
     }
 
     private void Update()
@@ -17,11 +19,20 @@ public class CharacterCombat : MonoBehaviour
         attackCooldown -= Time.deltaTime;
     }
 
-    public void Attack(CharacterStats targetStats)
+    public void MeleeAttack(CharacterStats targetStats)
     {
         if (attackCooldown <= 0f)
         {
             StartCoroutine(DoDamage(targetStats, myStats.AttackDelay));
+            attackCooldown = myStats.AttackSpeed;
+        }
+    }
+
+    public void RangedAttack()
+    {
+        if (attackCooldown <= 0f)
+        {
+            myProjectile.Shoot();
             attackCooldown = myStats.AttackSpeed;
         }
     }
