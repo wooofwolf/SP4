@@ -34,7 +34,6 @@ public class SwitchCollision : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("here");
                 switchStatus = !switchStatus;
             }
         }    

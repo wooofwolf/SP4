@@ -12,7 +12,10 @@ public class CharacterStats : MonoBehaviour
     private void Awake()
     {
         CurrentHealth = MaxHealth;
-        healthbar.SetMaxHealth(MaxHealth);
+        if (healthbar != null)
+        {
+            healthbar.SetMaxHealth(MaxHealth);
+        }
     }
 
     public void TakeDamage(int damage)
