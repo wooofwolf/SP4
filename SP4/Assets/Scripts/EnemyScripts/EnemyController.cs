@@ -7,9 +7,9 @@ public class EnemyController : MonoBehaviour
 {
     public float lookRadius = 10f;
     public float shootRadius = 5f;
-    public Transform player;
     public bool ranged = false;
 
+    private Transform player;
     private NavMeshAgent agent;
     private CharacterCombat combat;
 
@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         combat = GetComponent<CharacterCombat>();
+        player = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
