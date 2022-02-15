@@ -6,7 +6,9 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     public float lookRadius = 10f;
+    public float shootRadius = 5f;
     public Transform player;
+    public bool ranged = false;
 
     private NavMeshAgent agent;
     private CharacterCombat combat;
@@ -27,14 +29,50 @@ public class EnemyController : MonoBehaviour
             // Chase the player
             agent.SetDestination(player.position);
 
-            if (distance <= agent.stoppingDistance)
+            if (!ranged)
             {
-                // Attack the player
-                combat.Attack(player.GetComponent<CharacterStats>());
-                // Face the player
-                FaceTarget();
+                if (distance <= agent.stoppingDistance)
+                {
+                    // Stop moving
+                    agent.SetDestination(transform.position);
+                    // Attack the player
+                    combat.MeleeAttack(player.GetComponent<CharacterStats>());
+                    // Face the player
+                    FaceTarget();
+                }
+            }
+            else
+            {
+                if (distance <= shootRadius)
+                {
+                    // Check line of sight
+                    if (HasLineOfSight())
+                    {
+                        // Stop moving
+                        agent.SetDestination(transform.position);
+                        // Shoot the player
+                        combat.RangedAttack();
+                        // Face the player
+                        FaceTarget();
+                    }
+                }
             }
         }
+    }
+
+    bool HasLineOfSight()
+    {
+        RaycastHit hit;
+        Vector3 direction = player.position - transform.position;
+        if (Physics.Raycast(transform.position, direction, out hit))
+        {
+            if (hit.transform == player)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     void FaceTarget()
@@ -48,5 +86,11 @@ public class EnemyController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
+
+        if (ranged)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, shootRadius);
+        }
     }
 }
