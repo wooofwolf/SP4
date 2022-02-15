@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public float slideForce = 400;
     public float slideCounterMovement = 0.1f;
 
+    private bool readyToJump = true;
     private bool canDoubleJump = false;
     public float jumpForce = 550f;
 
