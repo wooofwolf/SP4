@@ -204,11 +204,11 @@ public class PlayerMovement : MonoBehaviour
 
             readyToDash = false;
 
-            if (grounded)
+            if (grounded && !crouching)
             {
                 rb.AddForce(orientation.transform.forward * dashForce * 5);
             }
-            if (!grounded)
+            if (!grounded && !crouching)
             {
                 rb.AddForce(orientation.transform.forward * dashForce * 0.3f);
             }
