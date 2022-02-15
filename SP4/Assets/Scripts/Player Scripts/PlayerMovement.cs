@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool readyToDash = true;
     public float dashCooldown = 1.0f;
+    public float dashCDUI = 1.0f;
     public float dashForce = 550f;
 
     float x, y;
@@ -68,6 +69,10 @@ public class PlayerMovement : MonoBehaviour
     {
         MyInput();
         Look();
+        if (!readyToDash && dashCDUI <= 1.0f)
+        {
+            dashCDUI += Time.deltaTime;
+        }
     }
 
     private void MyInput()
@@ -212,7 +217,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.AddForce(orientation.transform.forward * dashForce * 0.3f);
             }
-
+            dashCDUI = 0.0f;
             //rb.AddForce(orientation.transform.right * dashForce);
             //rb.AddForce(orientation.transform.right * dashForce * 0.5f);
 

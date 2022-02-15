@@ -11,8 +11,9 @@ public class CharacterStats : MonoBehaviour
     public Healthbar healthbar;
     private void Awake()
     {
-        CurrentHealth = MaxHealth;
-        healthbar.SetMaxHealth(MaxHealth);
+        CurrentHealth = 2;
+        healthbar.SetHealth(CurrentHealth);
+        //healthbar.SetMaxHealth(MaxHealth);
     }
 
     public void TakeDamage(int damage)
@@ -24,7 +25,15 @@ public class CharacterStats : MonoBehaviour
             Die();
         }
     }
-
+    public void Heal(int health)
+    {
+        CurrentHealth += health;
+        healthbar.SetHealth(CurrentHealth);
+        if(CurrentHealth > MaxHealth)
+        {
+            CurrentHealth = MaxHealth;
+        }
+    }    
     public virtual void Die()
     {
         // Function should be overwritten
