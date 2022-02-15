@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+public class ScoreSystem : MonoBehaviour
+{
+    public GameObject scoreText;
+    public static int Score;
+    void Update()
+    {
+        scoreText.GetComponent<Text>().text = "Noob\nScore:" + Score;
+        if (Score >20)
+        {
+            scoreText.GetComponent<Text>().text = "Scrub\nScore:" + Score;
+        }
+    }
+}
