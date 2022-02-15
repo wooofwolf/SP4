@@ -3367,6 +3367,10 @@ PrefabInstance:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 189909520}
+    - target: {fileID: 4289473200693411869, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
+      propertyPath: maxDoubleJumps
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4289473200693411871, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
       propertyPath: m_Name
       value: Player

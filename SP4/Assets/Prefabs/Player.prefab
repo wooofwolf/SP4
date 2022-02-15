@@ -268,7 +268,8 @@ MonoBehaviour:
   maxSlopeAngle: 35
   slideForce: 400
   slideCounterMovement: 0
-  jumpForce: 250
+  jumpForce: 500
+  dashCooldown: 1
   dashForce: 4000
   jumpcount: 0
   jumplimit: 0
