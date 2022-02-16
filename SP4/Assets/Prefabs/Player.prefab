@@ -259,7 +259,7 @@ MonoBehaviour:
   orientation: {fileID: 4289473199804389068}
   moveSpeed: 2000
   crouchMoveSpeed: 700
-  maxSpeed: 15
+  maxSpeed: 20
   grounded: 0
   whatIsGround:
     serializedVersion: 2
@@ -268,7 +268,7 @@ MonoBehaviour:
   maxSlopeAngle: 35
   slideForce: 400
   slideCounterMovement: 0
-  jumpForce: 500
+  jumpForce: 650
   dashCooldown: 1
   dashCDUI: 1
   dashForce: 4000
