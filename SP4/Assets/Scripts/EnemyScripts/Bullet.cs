@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public bool damageTaken = false;
+
     private GameObject player;
 
     private void Awake()
@@ -15,9 +17,10 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject == player && !damageTaken)
         {
             // Damage player
+            damageTaken = true;
             CharacterStats targetStats = player.GetComponent<CharacterStats>();
             targetStats.TakeDamage(1);
             Destroy(gameObject);

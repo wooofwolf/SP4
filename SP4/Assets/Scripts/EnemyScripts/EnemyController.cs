@@ -8,17 +8,22 @@ public class EnemyController : MonoBehaviour
     public float lookRadius = 10f;
     public float shootRadius = 5f;
     public bool ranged = false;
+    public GameObject weapon;
 
     private Transform player;
     private NavMeshAgent agent;
-    private CharacterCombat combat;
+    private MeleeWeapons sword;
+    private RangedWeapon gun;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        combat = GetComponent<CharacterCombat>();
         player = GameObject.Find("Player").transform;
+        if (!ranged)
+            sword = weapon.GetComponent<MeleeWeapons>();
+        else
+            gun = weapon.GetComponent<RangedWeapon>();
     }
 
     // Update is called once per frame
@@ -37,7 +42,7 @@ public class EnemyController : MonoBehaviour
                     // Stop moving
                     agent.SetDestination(transform.position);
                     // Attack the player
-                    combat.MeleeAttack(player.GetComponent<CharacterStats>());
+                    sword.Attack();
                     // Face the player
                     FaceTarget();
                 }
@@ -52,7 +57,7 @@ public class EnemyController : MonoBehaviour
                         // Stop moving
                         agent.SetDestination(transform.position);
                         // Shoot the player
-                        combat.RangedAttack(player);
+                        gun.Attack(player);
                         // Face the player
                         FaceTarget();
                     }

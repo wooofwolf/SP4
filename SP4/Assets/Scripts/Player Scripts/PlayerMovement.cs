@@ -57,11 +57,16 @@ public class PlayerMovement : MonoBehaviour
     bool isWallRunning;
     public float maxWallRunCameraTilt, wallRunCameraTilt;
 
+    // Melee Weapon
+    public GameObject weapon;
+    private MeleeWeapons sword;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         maxDoubleJumps = GetComponent<PlayerStats>().DoubleJumps;
         noOfDoubleJumpsLeft = maxDoubleJumps;
+        sword = weapon.GetComponent<MeleeWeapons>();
     }
 
     void Start()
@@ -119,6 +124,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
+        }
+
+        // Attack
+        if (Input.GetMouseButtonDown(0))
+        {
+            sword.Attack();
         }
     }
 
