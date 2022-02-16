@@ -57,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
     bool isWallRunning;
     public float maxWallRunCameraTilt, wallRunCameraTilt;
 
+    private float interpolationModifier = 0f;
+    public float crouchSpeed = 3f;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -124,8 +126,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void StartCrouch()
     {
+        if (interpolationModifier <= 1f)
+        {
+            interpolationModifier += Time.deltaTime * crouchSpeed;
+        }
+
         transform.localScale = crouchScale;
-        transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+        //transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+
+        transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), interpolationModifier);
+
         if (rb.velocity.magnitude > 0.5f)
         {
             if (grounded)
@@ -138,8 +148,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void StopCrouch()
     {
+        if (interpolationModifier >= 0f)
+        {
+            interpolationModifier -= Time.deltaTime * crouchSpeed;
+        }
+
+
         transform.localScale = playerScale;
-        transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+        //transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+
+        transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), interpolationModifier);
+
     }
 
     private void Movement()
@@ -228,8 +247,8 @@ public class PlayerMovement : MonoBehaviour
 
             //sidewards wallhopping
             if (isWallRight || isWallLeft && Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) rb.AddForce(-orientation.up * jumpForce * 1f);
-            if (isWallRight && Input.GetKey(KeyCode.A)) rb.AddForce(-orientation.right * jumpForce * 3.2f);
-            if (isWallLeft && Input.GetKey(KeyCode.D)) rb.AddForce(orientation.right * jumpForce * 3.2f);
+            if (isWallRight && Input.GetKey(KeyCode.A)) rb.AddForce(-orientation.right * jumpForce * 3.2f); rb.AddForce(Vector3.up * jumpForce * 0.3f);
+            if (isWallLeft && Input.GetKey(KeyCode.D)) rb.AddForce(orientation.right * jumpForce * 3.2f); rb.AddForce(Vector3.up * jumpForce * 0.3f);
 
             //Adding forward force
             rb.AddForce(orientation.forward * jumpForce * 1f);
