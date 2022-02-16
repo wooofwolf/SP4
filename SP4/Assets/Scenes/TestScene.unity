@@ -2545,7 +2545,7 @@ PrefabInstance:
       objectReference: {fileID: 1591189557}
     - target: {fileID: 4289473200693411869, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
       propertyPath: dashForce
-      value: 2500
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4289473200693411869, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
       propertyPath: playerCam

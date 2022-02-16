@@ -284,11 +284,11 @@ public class PlayerMovement : MonoBehaviour
 
             if (grounded && !crouching)
             {
-                rb.AddForce(orientation.transform.forward * dashForce * 5);
+                rb.AddForce(orientation.forward * dashForce * 5, ForceMode.Impulse);
             }
             if (!grounded && !crouching)
             {
-                rb.AddForce(orientation.transform.forward * dashForce * 0.3f);
+                rb.AddForce(orientation.forward * dashForce * 0.3f, ForceMode.Impulse);
             }
             dashCDUI = 0.0f;
             //rb.AddForce(orientation.transform.right * dashForce);
@@ -411,13 +411,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Counter movement
-        if (Math.Abs(mag.x) > threshold && Math.Abs(x) < 0.05f || (mag.x < -threshold && x > 0) || (mag.x > threshold && x < 0))
+        if (!dashing)
         {
-            rb.AddForce(moveSpeed * orientation.transform.right * Time.deltaTime * -mag.x * counterMovement);
-        }
-        if (Math.Abs(mag.y) > threshold && Math.Abs(y) < 0.05f || (mag.y < -threshold && y > 0) || (mag.y > threshold && y < 0))
-        {
-            rb.AddForce(moveSpeed * orientation.transform.forward * Time.deltaTime * -mag.y * counterMovement);
+            if (Math.Abs(mag.x) > threshold && Math.Abs(x) < 0.05f || (mag.x < -threshold && x > 0) || (mag.x > threshold && x < 0))
+            {
+                rb.AddForce(moveSpeed * orientation.transform.right * Time.deltaTime * -mag.x * counterMovement);
+            }
+            if (Math.Abs(mag.y) > threshold && Math.Abs(y) < 0.05f || (mag.y < -threshold && y > 0) || (mag.y > threshold && y < 0))
+            {
+                rb.AddForce(moveSpeed * orientation.transform.forward * Time.deltaTime * -mag.y * counterMovement);
+            }
         }
 
         //limit diagonal running
