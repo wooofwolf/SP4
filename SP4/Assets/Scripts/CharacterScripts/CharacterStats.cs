@@ -21,7 +21,10 @@ public class CharacterStats : MonoBehaviour
     public void TakeDamage(int damage)
     {
         CurrentHealth -= damage;
-        healthbar.SetHealth(CurrentHealth);
+        if (healthbar != null)
+        {
+            healthbar.SetHealth(CurrentHealth);
+        }
         if (CurrentHealth <= 0)
         {
             Die();
@@ -30,7 +33,10 @@ public class CharacterStats : MonoBehaviour
     public void Heal(int health)
     {
         CurrentHealth += health;
-        healthbar.SetHealth(CurrentHealth);
+        if (healthbar != null)
+        {
+            healthbar.SetHealth(CurrentHealth);
+        }
         if(CurrentHealth > MaxHealth)
         {
             CurrentHealth = MaxHealth;
