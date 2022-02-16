@@ -9,4 +9,9 @@ public class EnemyStats : CharacterStats
         MaxHealth = 1;
         CurrentHealth = MaxHealth;
     }
+
+    public override void Die()
+    {
+        Destroy(gameObject);
+    }
 }

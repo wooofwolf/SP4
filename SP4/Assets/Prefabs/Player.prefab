@@ -270,11 +270,18 @@ MonoBehaviour:
   slideCounterMovement: 0
   jumpForce: 500
   dashCooldown: 1
+  dashCDUI: 1
   dashForce: 4000
-  jumpcount: 0
-  jumplimit: 0
-  maxDoubleJumps: 0
-  noOfDoubleJumpsLeft: 0
+  fallMultiplier: 2.5
+  lowJumpMulitplier: 2
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 0
+  wallrunForce: 0
+  maxWallrunTime: 0
+  maxWallrunSpeed: 0
+  maxWallRunCameraTilt: 0
+  wallRunCameraTilt: 0
 --- !u!114 &4918836984031775284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,7 +300,7 @@ MonoBehaviour:
   AttackSpeed: 1
   AttackDelay: 0.6
   healthbar: {fileID: 0}
-  Jumps: 2
+  DoubleJumps: 1
 --- !u!1 &4289473201218343963
 GameObject:
   m_ObjectHideFlags: 0
