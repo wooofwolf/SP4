@@ -3,25 +3,25 @@ using UnityEngine;
 public class CharacterStats : MonoBehaviour
 {
     public int MaxHealth = 3;
-    public int CurrentHealth = 0;
+    public float CurrentHealth = 0;
     public int Damage = 1;
     public float AttackSpeed = 1f;
     public float AttackDelay = 0.6f;
 
-    public Healthbar healthbar;
+    
     private void Awake()
     {
         CurrentHealth = MaxHealth;
-        if (healthbar != null)
-        {
-            healthbar.SetMaxHealth(MaxHealth);
-        }
+        //if (healthbar != null)
+        //{
+        //    healthbar.SetMaxHealth(MaxHealth);
+        //}
     }
 
     public void TakeDamage(int damage)
     {
         CurrentHealth -= damage;
-        healthbar.SetHealth(CurrentHealth);
+        //healthbar.SetHealth(CurrentHealth);
         if (CurrentHealth <= 0)
         {
             Die();
@@ -30,7 +30,7 @@ public class CharacterStats : MonoBehaviour
     public void Heal(int health)
     {
         CurrentHealth += health;
-        healthbar.SetHealth(CurrentHealth);
+        //healthbar.SetHealth(CurrentHealth);
         if(CurrentHealth > MaxHealth)
         {
             CurrentHealth = MaxHealth;

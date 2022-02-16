@@ -81,8 +81,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        MyInput();
-        Look();
+        if (!GetComponent<PlayerStats>().dead)
+        {
+            MyInput();
+            Look();
+        }
         if (!readyToDash && dashCDUI <= 1.0f)
         {
             dashCDUI += Time.deltaTime;
