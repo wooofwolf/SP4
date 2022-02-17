@@ -286,7 +286,7 @@ MonoBehaviour:
   jumpForce: 650
   dashCooldown: 1
   dashCDUI: 1
-  dashForce: 4000
+  dashForce: 150
   fallMultiplier: 2.5
   lowJumpMulitplier: 2
   whatIsWall:
@@ -297,6 +297,8 @@ MonoBehaviour:
   maxWallrunSpeed: 0
   maxWallRunCameraTilt: 0
   wallRunCameraTilt: 0
+  crouchSpeed: 3
+  weapon: {fileID: 0}
 --- !u!114 &4918836984031775284
 MonoBehaviour:
   m_ObjectHideFlags: 0
