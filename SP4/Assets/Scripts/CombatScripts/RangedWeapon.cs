@@ -12,10 +12,27 @@ public class RangedWeapon : MonoBehaviour
     public float spread;
 
     private CharacterStats stats;
+    private LineRenderer lr;
 
     private void Awake()
     {
         stats = owner.GetComponent<CharacterStats>();
+        lr = GetComponent<LineRenderer>();
+    }
+
+    public void Aim(Transform target)
+    {
+        if (!canAttack)
+        {
+            lr.enabled = true;
+            lr.SetPosition(0, owner.transform.position);
+            lr.SetPosition(1, (target.position - transform.position) * 75);
+        }
+    }
+
+    public void DeleteAim()
+    {
+        lr.enabled = false;
     }
 
     public void Attack(Transform target)
