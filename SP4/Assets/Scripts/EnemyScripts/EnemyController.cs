@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     public float lookRadius = 10f;
     public float shootRadius = 5f;
     public bool ranged = false;
+    public bool flying = false;
     public GameObject weapon;
 
     private Transform player;
@@ -18,10 +19,15 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
         player = GameObject.Find("Player").transform;
+        if (!flying)
+        {
+            agent = GetComponent<NavMeshAgent>();
+        }
         if (!ranged)
+        {
             sword = weapon.GetComponent<MeleeWeapons>();
+        }
         else
         {
             gun = weapon.GetComponent<RangedWeapon>();
@@ -32,7 +38,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         float distance = Vector3.Distance(player.position, transform.position);
-        if (distance <= lookRadius)
+        if (distance <= lookRadius && !flying)
         {
             // Chase the player
             agent.SetDestination(player.position);
@@ -74,6 +80,30 @@ public class EnemyController : MonoBehaviour
                 {
                     gun.DeleteAim();
                 }
+            }
+        }
+        else if (flying && ranged)
+        {
+            if (distance <= shootRadius)
+            {
+                // Check line of sight
+                if (HasLineOfSight())
+                {
+                    // Aim at player
+                    gun.Aim(player);
+                    // Shoot the player
+                    gun.Attack(player);
+                    // Face the player
+                    FaceTarget();
+                }
+                else
+                {
+                    gun.DeleteAim();
+                }
+            }
+            else
+            {
+                gun.DeleteAim();
             }
         }
     }
