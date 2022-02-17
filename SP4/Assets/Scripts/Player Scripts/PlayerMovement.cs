@@ -63,6 +63,12 @@ public class PlayerMovement : MonoBehaviour
     public GameObject weapon;
     private MeleeWeapons sword;
 
+    public float FOV_change = 0.5f;
+    private float max_FOV = 90;
+    private float start_FOV = 75;
+
+
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -215,6 +221,15 @@ public class PlayerMovement : MonoBehaviour
         // moving while sliding
         if (grounded && crouching) multiplierV = 0f;
 
+        if (dashing)
+        {
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, max_FOV, .5f);
+        }
+        else
+        {
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, start_FOV, .1f);
+        }
+
         //applying force to move player
         rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
         rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
@@ -299,6 +314,7 @@ public class PlayerMovement : MonoBehaviour
             //    rb.velocity = new Vector3(0, vel.y, 0);
             //else if (rb.velocity.x > 0 && rb.velocity.z > 0)
             //    rb.velocity = new Vector3(vel.x / 2, vel.y, vel.z / 2);
+
 
             Invoke(nameof(ResetDash), dashCooldown);
         }
