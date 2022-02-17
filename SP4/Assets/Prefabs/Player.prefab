@@ -291,11 +291,11 @@ MonoBehaviour:
   lowJumpMulitplier: 2
   whatIsWall:
     serializedVersion: 2
-    m_Bits: 0
-  wallrunForce: 0
-  maxWallrunTime: 0
-  maxWallrunSpeed: 0
-  maxWallRunCameraTilt: 0
+    m_Bits: 2048
+  wallrunForce: 3000
+  maxWallrunTime: 2
+  maxWallrunSpeed: 30
+  maxWallRunCameraTilt: 25
   wallRunCameraTilt: 0
   crouchSpeed: 3
   weapon: {fileID: 0}

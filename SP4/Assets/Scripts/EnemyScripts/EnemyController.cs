@@ -23,7 +23,9 @@ public class EnemyController : MonoBehaviour
         if (!ranged)
             sword = weapon.GetComponent<MeleeWeapons>();
         else
+        {
             gun = weapon.GetComponent<RangedWeapon>();
+        }
     }
 
     // Update is called once per frame
@@ -54,6 +56,8 @@ public class EnemyController : MonoBehaviour
                     // Check line of sight
                     if (HasLineOfSight())
                     {
+                        // Aim at player
+                        gun.Aim(player);
                         // Stop moving
                         agent.SetDestination(transform.position);
                         // Shoot the player
@@ -61,6 +65,14 @@ public class EnemyController : MonoBehaviour
                         // Face the player
                         FaceTarget();
                     }
+                    else
+                    {
+                        gun.DeleteAim();
+                    }
+                }
+                else
+                {
+                    gun.DeleteAim();
                 }
             }
         }
