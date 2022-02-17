@@ -7,15 +7,12 @@ public class CharacterStats : MonoBehaviour
     public int Damage = 1;
     public float AttackSpeed = 1f;
     public float AttackDelay = 0.6f;
-
+    public bool invul = false;
+    
     
     private void Awake()
     {
         CurrentHealth = MaxHealth;
-        //if (healthbar != null)
-        //{
-        //    healthbar.SetMaxHealth(MaxHealth);
-        //}
     }
 
     public void TakeDamage(int damage)

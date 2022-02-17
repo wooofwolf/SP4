@@ -8,6 +8,7 @@ public class PlayerStats : CharacterStats
     public PlayerDeath playerDeath;
     public bool dead = false;
     public HealthCircle healthbar;
+    public bool tripJump = false;
     private void Update()
     {
         if (CurrentHealth <= 0)
@@ -16,6 +17,14 @@ public class PlayerStats : CharacterStats
             dead = true;
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
+        }
+        if (tripJump)
+        {
+            DoubleJumps = 2;
+        }
+        else
+        {
+            DoubleJumps = 1;
         }
     }
 

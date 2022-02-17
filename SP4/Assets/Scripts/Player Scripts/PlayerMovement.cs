@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 normalVector = Vector3.up;
     private Vector3 wallNormalVector;
 
-    private int maxDoubleJumps;
+   // private int maxDoubleJumps;
     private int noOfDoubleJumpsLeft;
 
     public float fallMultiplier = 2.5f;
@@ -66,8 +66,8 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        maxDoubleJumps = GetComponent<PlayerStats>().DoubleJumps;
-        noOfDoubleJumpsLeft = maxDoubleJumps;
+        //maxDoubleJumps = GetComponent<PlayerStats>().DoubleJumps;
+        //noOfDoubleJumpsLeft = maxDoubleJumps;
         sword = weapon.GetComponent<MeleeWeapons>();
     }
 
@@ -227,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce);
             canDoubleJump = true;
-            noOfDoubleJumpsLeft = maxDoubleJumps;
+            noOfDoubleJumpsLeft = /*maxDoubleJumps*/GetComponent<PlayerStats>().DoubleJumps;
         }
         else if (!isWallRunning && !grounded)
         {
@@ -253,7 +253,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
                 rb.AddForce(Vector3.up * jumpForce);
                 canDoubleJump = true;
-                noOfDoubleJumpsLeft = maxDoubleJumps;
+                noOfDoubleJumpsLeft = /*maxDoubleJumps*/GetComponent<PlayerStats>().DoubleJumps;
             }
 
             //sidewards wallhopping
