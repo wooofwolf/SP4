@@ -237,12 +237,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+
         if (grounded)
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce);
             canDoubleJump = true;
             noOfDoubleJumpsLeft = maxDoubleJumps;
+
         }
         else if (!isWallRunning && !grounded)
         {
@@ -261,7 +263,8 @@ public class PlayerMovement : MonoBehaviour
         if (isWallRunning)
         {
             readyToJump = false;
-            
+
+
             //normal jump since player not pressing down directional keys toward wall
             if (isWallLeft && !Input.GetKey(KeyCode.D) || isWallRight && !Input.GetKey(KeyCode.A))
             {
@@ -281,6 +284,7 @@ public class PlayerMovement : MonoBehaviour
 
             //rb.velocity = Vector3.zero;
         }
+
     }
     private void Dash()
     {
