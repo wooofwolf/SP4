@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 4289473200693411866}
   - component: {fileID: 4289473200693411869}
   - component: {fileID: 4918836984031775284}
+  - component: {fileID: 3985395185840618006}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -299,6 +300,8 @@ MonoBehaviour:
   wallRunCameraTilt: 0
   crouchSpeed: 3
   weapon: {fileID: 0}
+  FOV_change: 0.5
+  pickedUpProjPU: 0
 --- !u!114 &4918836984031775284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,10 +319,27 @@ MonoBehaviour:
   Damage: 1
   AttackSpeed: 1
   AttackDelay: 0.6
+  invul: 0
   DoubleJumps: 1
   playerDeath: {fileID: 0}
   dead: 0
   healthbar: {fileID: 0}
+  tripJump: 0
+--- !u!114 &3985395185840618006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4289473200693411871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e399ec19d9fb99e4590676e387f78b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 1189210395326970894, guid: 80912aa16ba9c1e48afb20675692bf45, type: 3}
+  orientation: {fileID: 4289473199804389068}
+  shootForce: 10
 --- !u!1 &4289473201218343963
 GameObject:
   m_ObjectHideFlags: 0
