@@ -1512,6 +1512,10 @@ PrefabInstance:
       propertyPath: grappling
       value: 
       objectReference: {fileID: 191429299}
+    - target: {fileID: 2457324813278505901, guid: b3ce9555d6037d1449edab7c6b111817, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 1077170924}
     - target: {fileID: 6527020604514058870, guid: b3ce9555d6037d1449edab7c6b111817, type: 3}
       propertyPath: player
       value: 
@@ -4033,6 +4037,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054014685}
   m_CullTransparentMesh: 1
+--- !u!1 &1077170924 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4289473200693411871, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
+  m_PrefabInstance: {fileID: 1182315439}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1157299988
 GameObject:
   m_ObjectHideFlags: 0
