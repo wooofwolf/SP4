@@ -260,6 +260,9 @@ public class PlayerMovement : MonoBehaviour
                 }
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
                 rb.AddForce(Vector3.up * jumpForce);
+
+                // Play audio clip
+                FindObjectOfType<AudioManager>().Play("DoubleJump");
             }
         }
 
@@ -322,6 +325,8 @@ public class PlayerMovement : MonoBehaviour
             //else if (rb.velocity.x > 0 && rb.velocity.z > 0)
             //    rb.velocity = new Vector3(vel.x / 2, vel.y, vel.z / 2);
 
+            // Play audio clip
+            FindObjectOfType<AudioManager>().Play("Dash");
 
             Invoke(nameof(ResetDash), dashCooldown);
         }
