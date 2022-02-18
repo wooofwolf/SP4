@@ -241,6 +241,10 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 960460697}
+    - target: {fileID: 1102379617484088569, guid: d5360e893e97fdf438c5964f20cdfe27, type: 3}
+      propertyPath: hasShield
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1102379617484088570, guid: d5360e893e97fdf438c5964f20cdfe27, type: 3}
       propertyPath: m_RootOrder
       value: 10
