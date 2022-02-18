@@ -5,8 +5,12 @@ using UnityEngine;
 public class CollectHealthCubes : MonoBehaviour
 {
     public AudioSource collectionSound;
-    public PlayerStats player;
+    private PlayerStats player;
     Healthbar healthbar;
+    private void Awake()
+    {
+        player = GameObject.Find("Player").GetComponent<PlayerStats>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         collectionSound.Play();

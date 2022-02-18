@@ -25,7 +25,7 @@ public class AttkSpeedUp : MonoBehaviour
         if (attkUp)
         {
             attkSpeedTimer -= Time.deltaTime;
-            Debug.Log(attkSpeedTimer);
+            //Debug.Log(attkSpeedTimer);
             if (attkSpeedTimer <= 0)
             {
                 attkSpeedTimer = maxTimer;
@@ -34,13 +34,13 @@ public class AttkSpeedUp : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        Debug.Log(animator.speed);
+        //Debug.Log(animator.speed);
     }
     private void OnTriggerEnter(Collider other)
     {
         animator.speed = animSpeed;
         attkUp = true;
         transform.position = new Vector3(0, 1000, 0);
-        Debug.Log("Speedup");
+        //Debug.Log("Speedup");
     }
 }

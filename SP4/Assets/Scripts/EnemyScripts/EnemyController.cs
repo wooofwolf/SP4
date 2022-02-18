@@ -10,16 +10,24 @@ public class EnemyController : MonoBehaviour
     public bool ranged = false;
     public bool flying = false;
     public GameObject weapon;
+    public float walkPointRange;
+    public LayerMask whatIsGround;
 
     private Transform player;
     private NavMeshAgent agent;
     private MeleeWeapons sword;
     private RangedWeapon gun;
+    private EnemyStats stats;
+    private GameObject shield;
+    private Vector3 walkPoint;
+    private bool walkPointSet;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         player = GameObject.Find("Player").transform;
+        stats = GetComponent<EnemyStats>();
+        shield = transform.Find("ShieldParticles").gameObject;
         if (!flying)
         {
             agent = GetComponent<NavMeshAgent>();
@@ -31,6 +39,11 @@ public class EnemyController : MonoBehaviour
         else
         {
             gun = weapon.GetComponent<RangedWeapon>();
+        }
+
+        if (stats.hasShield)
+        {
+            shield.SetActive(true);
         }
     }
 
@@ -106,6 +119,21 @@ public class EnemyController : MonoBehaviour
                 gun.DeleteAim();
             }
         }
+        else
+        {
+            if (!walkPointSet)
+            {
+                SearchWalkPoint();
+            }
+            if (walkPointSet)
+            {
+                agent.SetDestination(walkPoint);
+            }
+
+            float distanceToWalkPoint = Vector3.Distance(walkPoint, transform.position);
+            if (distanceToWalkPoint <= agent.stoppingDistance)
+                walkPointSet = false;
+        }
     }
 
     bool HasLineOfSight()
@@ -128,6 +156,24 @@ public class EnemyController : MonoBehaviour
         Vector3 direction = (player.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+
+    public void DisableShield()
+    {
+        shield.SetActive(false);
+    }
+
+    void SearchWalkPoint()
+    {
+        float x = Random.Range(-walkPointRange, walkPointRange);
+        float z = Random.Range(-walkPointRange, walkPointRange);
+
+        walkPoint = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
+
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        {
+            walkPointSet = true;
+        }
     }
 
     private void OnDrawGizmosSelected()

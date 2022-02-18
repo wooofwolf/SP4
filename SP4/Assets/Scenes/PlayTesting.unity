@@ -943,7 +943,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 436626052}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.68, y: 14.99, z: 3.6}
+  m_LocalPosition: {x: 19.96, y: 14.99, z: 3.6}
   m_LocalScale: {x: 3.285559, y: 13.540939, z: 47.372784}
   m_Children: []
   m_Father: {fileID: 1567917922}
@@ -1355,6 +1355,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1229361789}
+    - target: {fileID: 2457324812050148936, guid: b3ce9555d6037d1449edab7c6b111817, type: 3}
+      propertyPath: grappling
+      value: 
+      objectReference: {fileID: 1399028351}
     - target: {fileID: 2457324812606279286, guid: b3ce9555d6037d1449edab7c6b111817, type: 3}
       propertyPath: player
       value: 
@@ -1363,6 +1367,10 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 355691517}
+    - target: {fileID: 6527020604514058870, guid: b3ce9555d6037d1449edab7c6b111817, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 355691518}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3ce9555d6037d1449edab7c6b111817, type: 3}
 --- !u!1 &662964270
@@ -2034,7 +2042,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064252946}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 44.39, y: 14.52, z: -19.5}
+  m_LocalPosition: {x: 53.1, y: 14.52, z: -19.5}
   m_LocalScale: {x: 70.7304, y: 0.9522943, z: 16.757248}
   m_Children: []
   m_Father: {fileID: 1567917922}
@@ -2276,6 +2284,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260191324}
   m_CullTransparentMesh: 1
+--- !u!114 &1399028351 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6527020604514058870, guid: b3ce9555d6037d1449edab7c6b111817, type: 3}
+  m_PrefabInstance: {fileID: 626056511}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a6d9e02bfe639449e9255535941069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1404309420
 GameObject:
   m_ObjectHideFlags: 0
