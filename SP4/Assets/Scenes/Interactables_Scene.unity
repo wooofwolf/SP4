@@ -1367,6 +1367,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 985653564}
+    - target: {fileID: 2457324812050148936, guid: b3ce9555d6037d1449edab7c6b111817, type: 3}
+      propertyPath: grappling
+      value: 
+      objectReference: {fileID: 980058546}
     - target: {fileID: 2457324812606279286, guid: b3ce9555d6037d1449edab7c6b111817, type: 3}
       propertyPath: player
       value: 
@@ -1375,8 +1379,23 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 1330797385}
+    - target: {fileID: 6527020604514058870, guid: b3ce9555d6037d1449edab7c6b111817, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1330797386}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3ce9555d6037d1449edab7c6b111817, type: 3}
+--- !u!114 &980058546 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6527020604514058870, guid: b3ce9555d6037d1449edab7c6b111817, type: 3}
+  m_PrefabInstance: {fileID: 980058545}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a6d9e02bfe639449e9255535941069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &985653564 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4289473201218343960, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
