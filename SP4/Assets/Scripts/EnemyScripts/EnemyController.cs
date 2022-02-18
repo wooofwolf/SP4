@@ -15,11 +15,15 @@ public class EnemyController : MonoBehaviour
     private NavMeshAgent agent;
     private MeleeWeapons sword;
     private RangedWeapon gun;
+    private EnemyStats stats;
+    private GameObject shield;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         player = GameObject.Find("Player").transform;
+        stats = GetComponent<EnemyStats>();
+        shield = transform.Find("ShieldParticles").gameObject;
         if (!flying)
         {
             agent = GetComponent<NavMeshAgent>();
@@ -31,6 +35,11 @@ public class EnemyController : MonoBehaviour
         else
         {
             gun = weapon.GetComponent<RangedWeapon>();
+        }
+
+        if (stats.hasShield)
+        {
+            shield.SetActive(true);
         }
     }
 
@@ -128,6 +137,11 @@ public class EnemyController : MonoBehaviour
         Vector3 direction = (player.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+
+    public void DisableShield()
+    {
+        shield.SetActive(false);
     }
 
     private void OnDrawGizmosSelected()
