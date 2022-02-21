@@ -46,17 +46,17 @@ MonoBehaviour:
   sounds:
   - name: GrapplingGun
     clip: {fileID: 8300000, guid: 20d85427ee705e84a97a00b47b3f401b, type: 3}
-    volume: 1
+    volume: 0.8
     pitch: 1
     source: {fileID: 0}
   - name: Sword
     clip: {fileID: 8300000, guid: 061b22982f7a1ea4d8d5b75ee972bef4, type: 3}
-    volume: 0.8
+    volume: 0.6
     pitch: 1
     source: {fileID: 0}
   - name: Dash
     clip: {fileID: 8300000, guid: 371b67c7faba0894b989abf8b20c74e5, type: 3}
-    volume: 1
+    volume: 0.8
     pitch: 1
     source: {fileID: 0}
   - name: Gun
@@ -66,6 +66,21 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: DoubleJump
     clip: {fileID: 8300000, guid: b6726be262ec56a45a181782109bdaa5, type: 3}
-    volume: 0.6
+    volume: 0.4
+    pitch: 1
+    source: {fileID: 0}
+  - name: Slide
+    clip: {fileID: 8300000, guid: f0d3454c1f886c54995bd3e12e57ce74, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Running
+    clip: {fileID: 8300000, guid: 7cc084b0113517b41b11737c265066d6, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Jump
+    clip: {fileID: 8300000, guid: 5d686eb393d47344dac52e6d41429e55, type: 3}
+    volume: 1
     pitch: 1
     source: {fileID: 0}
