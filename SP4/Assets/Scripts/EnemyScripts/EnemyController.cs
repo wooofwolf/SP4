@@ -50,6 +50,13 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Bounce enemy
+        if (flying)
+        {
+            float newY = Mathf.Sin(Time.time * 2f);
+            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+        }
+
         float distance = Vector3.Distance(player.position, transform.position);
         if (distance <= lookRadius && !flying)
         {
@@ -97,6 +104,7 @@ public class EnemyController : MonoBehaviour
         }
         else if (flying && ranged)
         {
+            // Attack
             if (distance <= shootRadius)
             {
                 // Check line of sight

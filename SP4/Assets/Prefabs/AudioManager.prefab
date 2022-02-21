@@ -61,7 +61,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Gun
     clip: {fileID: 8300000, guid: c5b2a469a07359d44aa58b8b8db46ec7, type: 3}
-    volume: 1
+    volume: 0.7
     pitch: 1
     source: {fileID: 0}
   - name: DoubleJump
