@@ -44,7 +44,7 @@ public class OneHPNoDie : MonoBehaviour
     {
         player.invul = true;
         invulneffectcheck = true;
-        Debug.Log("Invulnerable");
+        //Debug.Log("Invulnerable");
         transform.position = new Vector3(0, -10, 0);
         //Invoke(gameobject.Destroy(), 3f);
         //Destroy(gameObject);

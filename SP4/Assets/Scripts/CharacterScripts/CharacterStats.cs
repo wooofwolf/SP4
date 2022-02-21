@@ -13,6 +13,7 @@ public class CharacterStats : MonoBehaviour
     private void Awake()
     {
         CurrentHealth = MaxHealth;
+        Debug.Log("Healthy"); 
     }
 
     public virtual void TakeDamage(int damage)
