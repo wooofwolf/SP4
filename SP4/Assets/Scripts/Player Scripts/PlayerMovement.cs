@@ -250,8 +250,9 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
         rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
 
-        if ((grounded || isWallRunning) && rb.velocity.magnitude > 0.2f)
+        if ((grounded || isWallRunning) && rb.velocity.magnitude > 0.5f)
         {
+            Debug.Log(rb.velocity.magnitude);
             FindObjectOfType<AudioManager>().SetPitch("Running", 1f + rb.velocity.magnitude * 0.02f);
             // Play audio clip
             FindObjectOfType<AudioManager>().PlayUpdateLoop("Running");
