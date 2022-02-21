@@ -9,21 +9,12 @@ public class MenuController : MonoBehaviour
         switch(scene)
         {
             case 1: 
-                SceneManager.LoadScene("TestScene");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 break;
             case 2: 
                 SceneManager.LoadScene("MainMenu");
                 break;
-            case 3: 
-                SceneManager.LoadScene("EnemyTestScene");
-                break;
-            case 4: 
-                SceneManager.LoadScene("CollectibleTestScene");
-                break;
-            case 5:
-                SceneManager.LoadScene("Interactables_Scene");
-                break;
-            case 6:
+            case 3:
                 ExitGame();
                 break;
         }

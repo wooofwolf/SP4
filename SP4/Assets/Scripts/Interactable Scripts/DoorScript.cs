@@ -5,13 +5,14 @@ using UnityEngine;
 public class DoorScript : MonoBehaviour
 {
     public GameObject inputMethod;
-    public float doorSpeed = 2.0f;
+    public float doorSpeed = 4.0f;
+    public AudioSource open, close;
     bool doorStatus;
 
     Vector3 closedPosition;
     Vector3 openPosition;
 
-    float interpolationModifier;
+    float interpolationModifier = -0.01f;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,12 @@ public class DoorScript : MonoBehaviour
             if (interpolationModifier <= 1.0f)
             {
                 interpolationModifier += Time.deltaTime * doorSpeed;
+                // Open door
+                if (!open.isPlaying)
+                {
+                    open.Play();
+                    close.Stop();
+                }
             }
         }
         else
@@ -37,6 +44,12 @@ public class DoorScript : MonoBehaviour
             if (interpolationModifier >= 0.0f)
             {
                 interpolationModifier -= Time.deltaTime * doorSpeed;
+                // Close door
+                if (!close.isPlaying)
+                {
+                    close.Play();
+                    open.Stop();
+                }
             }
         }
         

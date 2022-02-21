@@ -163,6 +163,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.AddForce(orientation.transform.forward * slideForce);
 
+                // Play audio clip
+                FindObjectOfType<AudioManager>().Play("Slide");
             }
         }
     }
@@ -180,6 +182,8 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), interpolationModifier);
 
+        // Stop audio clip
+        FindObjectOfType<AudioManager>().Stop("Slide");
     }
 
     private void Movement()
@@ -245,6 +249,19 @@ public class PlayerMovement : MonoBehaviour
         //applying force to move player
         rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
         rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
+
+        if (grounded && rb.velocity.magnitude > 0.2f)
+        {
+            FindObjectOfType<AudioManager>().SetPitch("Running", 1f + rb.velocity.magnitude * 0.02f);
+            // Play audio clip
+            FindObjectOfType<AudioManager>().PlayUpdateLoop("Running");
+        }
+        else
+        {
+            // Play audio clip
+            FindObjectOfType<AudioManager>().Stop("Running");
+            FindObjectOfType<AudioManager>().SetPitch("Running", 1f);
+        }
     }
 
     private void Jump()
@@ -256,6 +273,9 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce);
             canDoubleJump = true;
             noOfDoubleJumpsLeft = /*maxDoubleJumps*/GetComponent<PlayerStats>().DoubleJumps;
+
+            // Play audio clip
+            FindObjectOfType<AudioManager>().Play("Jump");
         }
         else if (!isWallRunning && !grounded)
         {
@@ -268,6 +288,9 @@ public class PlayerMovement : MonoBehaviour
                 }
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
                 rb.AddForce(Vector3.up * jumpForce);
+
+                // Play audio clip
+                FindObjectOfType<AudioManager>().Play("DoubleJump");
             }
         }
 
@@ -330,6 +353,8 @@ public class PlayerMovement : MonoBehaviour
             //else if (rb.velocity.x > 0 && rb.velocity.z > 0)
             //    rb.velocity = new Vector3(vel.x / 2, vel.y, vel.z / 2);
 
+            // Play audio clip
+            FindObjectOfType<AudioManager>().Play("Dash");
 
             Invoke(nameof(ResetDash), dashCooldown);
         }
