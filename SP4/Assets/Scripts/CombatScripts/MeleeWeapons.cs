@@ -45,6 +45,9 @@ public class MeleeWeapons : MonoBehaviour
         canAttack = false;
         isAttacking = true;
         animator.SetTrigger("Attack");
+        // Play audio clip
+        FindObjectOfType<AudioManager>().Play("Sword");
+
         StartCoroutine(ResetAttack());
     }
 

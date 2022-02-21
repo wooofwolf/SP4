@@ -53,6 +53,8 @@ public class GrapplingGun : MonoBehaviour
 
             lr.positionCount = 2;
 
+            // Play audio clip
+            FindObjectOfType<AudioManager>().Play("GrapplingGun");
         }
     }
 

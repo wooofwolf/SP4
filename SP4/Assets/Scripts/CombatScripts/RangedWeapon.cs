@@ -64,6 +64,9 @@ public class RangedWeapon : MonoBehaviour
 
         newBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
 
+        // Play audio clip
+        FindObjectOfType<AudioManager>().Play("Gun");
+
         canAttack = false;
         StartCoroutine(ResetAttack());
     }

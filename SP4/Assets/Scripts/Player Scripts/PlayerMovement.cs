@@ -195,7 +195,15 @@ public class PlayerMovement : MonoBehaviour
         CounterMovement(x, y, mag);
 
         //dashing
-        if (dashing && readyToDash) Dash();
+        if (dashing && readyToDash)
+        {
+            Dash();
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, max_FOV, .5f);
+        }
+        else
+        {
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, start_FOV, .1f);
+        }
 
         //Set max speed
         float maxSpeed = this.maxSpeed;
@@ -225,14 +233,14 @@ public class PlayerMovement : MonoBehaviour
         // moving while sliding
         if (grounded && crouching) multiplierV = 0f;
 
-        if (dashing)
-        {
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, max_FOV, .5f);
-        }
-        else
-        {
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, start_FOV, .1f);
-        }
+        //if (dashing)
+        //{
+        //    Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, max_FOV, .5f);
+        //}
+        //else
+        //{
+        //    Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, start_FOV, .1f);
+        //}
 
         //applying force to move player
         rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
@@ -260,6 +268,9 @@ public class PlayerMovement : MonoBehaviour
                 }
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
                 rb.AddForce(Vector3.up * jumpForce);
+
+                // Play audio clip
+                FindObjectOfType<AudioManager>().Play("DoubleJump");
             }
         }
 
@@ -322,6 +333,8 @@ public class PlayerMovement : MonoBehaviour
             //else if (rb.velocity.x > 0 && rb.velocity.z > 0)
             //    rb.velocity = new Vector3(vel.x / 2, vel.y, vel.z / 2);
 
+            // Play audio clip
+            FindObjectOfType<AudioManager>().Play("Dash");
 
             Invoke(nameof(ResetDash), dashCooldown);
         }
