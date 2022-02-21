@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class AttkSpeedUp : MonoBehaviour
 {
-
+    public ShowAS Showas; 
     Animator animator;
     public GameObject weapon;
     public float animSpeed = 3f;
     public float attkSpeedTimer = 10f;
     public bool attkUp = false;
     float maxTimer;
+    public float ASeffectTimer = 2.0f;
+    public bool ASeffectCheck = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,6 +27,7 @@ public class AttkSpeedUp : MonoBehaviour
         if (attkUp)
         {
             attkSpeedTimer -= Time.deltaTime;
+            ASeffectTimer -= Time.deltaTime;
             //Debug.Log(attkSpeedTimer);
             if (attkSpeedTimer <= 0)
             {
@@ -33,14 +36,31 @@ public class AttkSpeedUp : MonoBehaviour
                 attkUp = false;
                 Destroy(gameObject);
             }
+            if (ASeffectTimer <= 0)
+            {
+                ASeffectCheck = false;
+            }
         }
         //Debug.Log(animator.speed);
+        if (ASeffectCheck == true) showas();
+        else if (ASeffectCheck == false) stopas();
     }
     private void OnTriggerEnter(Collider other)
     {
         animator.speed = animSpeed;
         attkUp = true;
-        transform.position = new Vector3(0, 1000, 0);
+        ASeffectCheck = true;
+        transform.position = new Vector3(0, -10, 0);
         //Debug.Log("Speedup");
+    }
+
+    public void showas()
+    {
+        Showas.showAS();
+    }
+
+    public void stopas()
+    {
+        Showas.stopAS();
     }
 }
