@@ -27,7 +27,7 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         stats = GetComponent<EnemyStats>();
-        shield = transform.Find("ShieldParticles").gameObject;
+        shield = transform.Find("ShieldEffects").gameObject;
         if (!flying)
         {
             agent = GetComponent<NavMeshAgent>();
