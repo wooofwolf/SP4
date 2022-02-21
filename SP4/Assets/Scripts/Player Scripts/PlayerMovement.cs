@@ -282,16 +282,19 @@ public class PlayerMovement : MonoBehaviour
         {
             if (canDoubleJump)
             {
-                noOfDoubleJumpsLeft -= 1;
-                if (noOfDoubleJumpsLeft <= 0)
+                if (noOfDoubleJumpsLeft >= 1)
                 {
-                    canDoubleJump = false;
-                }
-                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-                rb.AddForce(Vector3.up * jumpForce);
+                    noOfDoubleJumpsLeft -= 1;
+                    if (noOfDoubleJumpsLeft <= 0)
+                    {
+                        canDoubleJump = false;
+                    }
+                    rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                    rb.AddForce(Vector3.up * jumpForce);
 
-                // Play audio clip
-                FindObjectOfType<AudioManager>().Play("DoubleJump");
+                    // Play audio clip
+                    FindObjectOfType<AudioManager>().Play("DoubleJump");
+                }
             }
         }
 
