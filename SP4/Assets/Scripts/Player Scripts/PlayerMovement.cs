@@ -250,8 +250,9 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
         rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
 
-        if (grounded && rb.velocity.magnitude > 0.2f)
+        if ((grounded || isWallRunning) && rb.velocity.magnitude > 0.5f)
         {
+            Debug.Log(rb.velocity.magnitude);
             FindObjectOfType<AudioManager>().SetPitch("Running", 1f + rb.velocity.magnitude * 0.02f);
             // Play audio clip
             FindObjectOfType<AudioManager>().PlayUpdateLoop("Running");
@@ -281,16 +282,19 @@ public class PlayerMovement : MonoBehaviour
         {
             if (canDoubleJump)
             {
-                noOfDoubleJumpsLeft -= 1;
-                if (noOfDoubleJumpsLeft <= 0)
+                if (noOfDoubleJumpsLeft >= 1)
                 {
-                    canDoubleJump = false;
-                }
-                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-                rb.AddForce(Vector3.up * jumpForce);
+                    noOfDoubleJumpsLeft -= 1;
+                    if (noOfDoubleJumpsLeft <= 0)
+                    {
+                        canDoubleJump = false;
+                    }
+                    rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                    rb.AddForce(Vector3.up * jumpForce);
 
-                // Play audio clip
-                FindObjectOfType<AudioManager>().Play("DoubleJump");
+                    // Play audio clip
+                    FindObjectOfType<AudioManager>().Play("DoubleJump");
+                }
             }
         }
 

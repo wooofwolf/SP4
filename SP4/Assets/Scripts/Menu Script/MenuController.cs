@@ -17,6 +17,9 @@ public class MenuController : MonoBehaviour
             case 3:
                 ExitGame();
                 break;
+            case 4:
+                SceneManager.LoadScene("TestScene");
+                break;
         }
 
     }
