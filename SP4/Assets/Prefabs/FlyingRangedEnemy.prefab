@@ -4916,11 +4916,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67aaaab0c01c684fbbfe2799dba17be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookRadius: 20
-  shootRadius: 20
+  lookRadius: 30
+  shootRadius: 30
   ranged: 1
   flying: 1
   weapon: {fileID: 7623738897341655385}
+  walkPointRange: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &4726601229718708042
 MonoBehaviour:
   m_ObjectHideFlags: 0
