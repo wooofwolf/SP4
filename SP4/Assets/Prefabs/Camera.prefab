@@ -245,6 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2457324812050148939}
   - component: {fileID: 2457324812050148936}
+  - component: {fileID: 426850384805504711}
   m_Layer: 0
   m_Name: GunPosition
   m_TagString: Untagged
@@ -280,6 +281,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grappling: {fileID: 0}
+--- !u!114 &426850384805504711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2457324812050148938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cc3c2acfe084c44d8684f828c62952f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2457324811874536006
 PrefabInstance:
   m_ObjectHideFlags: 0
