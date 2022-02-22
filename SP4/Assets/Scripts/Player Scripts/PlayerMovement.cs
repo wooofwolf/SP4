@@ -202,11 +202,11 @@ public class PlayerMovement : MonoBehaviour
         if (dashing && readyToDash)
         {
             Dash();
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, max_FOV, .5f);
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, max_FOV, FOV_change);
         }
         else
         {
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, start_FOV, .1f);
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, start_FOV, FOV_change);
         }
 
         //Set max speed
@@ -237,14 +237,14 @@ public class PlayerMovement : MonoBehaviour
         // moving while sliding
         if (grounded && crouching) multiplierV = 0f;
 
-        //if (dashing)
-        //{
-        //    Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, max_FOV, .5f);
-        //}
-        //else
-        //{
-        //    Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, start_FOV, .1f);
-        //}
+        if (dashing)
+        {
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, max_FOV, .5f);
+        }
+        else
+        {
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, start_FOV, .1f);
+        }
 
         //applying force to move player
         rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
@@ -252,7 +252,6 @@ public class PlayerMovement : MonoBehaviour
 
         if ((grounded || isWallRunning) && rb.velocity.magnitude > 0.5f)
         {
-            Debug.Log(rb.velocity.magnitude);
             FindObjectOfType<AudioManager>().SetPitch("Running", 1f + rb.velocity.magnitude * 0.02f);
             // Play audio clip
             FindObjectOfType<AudioManager>().PlayUpdateLoop("Running");

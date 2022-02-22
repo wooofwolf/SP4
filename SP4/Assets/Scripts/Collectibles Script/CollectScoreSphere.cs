@@ -8,14 +8,16 @@ public class CollectScoreSphere : MonoBehaviour
     bool collected = false;
     private void OnTriggerEnter(Collider other)
     {
-        if (collected == false)
+        if (other.CompareTag("Player"))
         {
-            collectionSound.Play();
-            ScoreSystem.Score = ScoreSystem.Score + 20;
-            //gameObject.SetActive(false);
-            Destroy(gameObject);
-            collected = true;
+            if (collected == false)
+            {
+                collectionSound.Play();
+                ScoreSystem.Score = ScoreSystem.Score + 20;
+                //gameObject.SetActive(false);
+                Destroy(gameObject);
+                collected = true;
+            }
         }
-        Debug.Log(ScoreSystem.Score);
     }
 }

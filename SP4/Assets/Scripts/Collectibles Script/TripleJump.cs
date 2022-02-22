@@ -10,7 +10,7 @@ public class TripleJump : MonoBehaviour
     public ShowTJ showTj;
     public float tjeffectTime = 2.0f;
     public bool tjeffectscheck = false;
-
+    public GameObject tallJumpTimerBar;
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<PlayerStats>();
@@ -20,30 +20,42 @@ public class TripleJump : MonoBehaviour
     {
         if (player.tripJump)
         {
+            TimerBar slider = tallJumpTimerBar.GetComponent<TimerBar>();
+            slider.SetMaxBar(maxTimer);
             tripJumpTimer -= Time.deltaTime;
-            tjeffectTime -= Time.deltaTime;
-
-            // Debug.Log(tripJumpTimer);
+            slider.SetBar(tripJumpTimer);
             if (tripJumpTimer <= 0)
             {
+                tallJumpTimerBar.SetActive(false);
                 tripJumpTimer = maxTimer;
                 player.tripJump = false;
-                Destroy(gameObject);
             }
-            if (tjeffectTime <= 0)
+            if (tripJumpTimer <= maxTimer - tjeffectTime)
             {
                 tjeffectscheck = false;
             }
         }
 
-        if (tjeffectscheck == true) Showtj();
-        else if (tjeffectscheck == false) Stoptj();
+        if (tjeffectscheck == true)
+        { 
+            showTj.showtj(); 
+        }
+        else
+        { 
+            showTj.stoptj(); 
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
-        player.tripJump = true;
-        tjeffectscheck = true;
-        transform.position = new Vector3(0, 1000, 0);
+        if (other.CompareTag("Player"))
+        {
+            player.tripJump = true;
+            tjeffectscheck = true;
+            tripJumpTimer = maxTimer;
+            tallJumpTimerBar.SetActive(true);
+            transform.position = new Vector3(0, 1000, 0);
+            Destroy(gameObject, maxTimer);
+        }
     }
 
     public void Showtj()
