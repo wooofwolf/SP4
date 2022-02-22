@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OneHPNoDie : MonoBehaviour
 {
     public ShowInvuln showinvuln;
     public float InvulnTimer = 3.0f;
     private float maxInvulnTimer;
-    //bool pickedup = false;
     private CharacterStats player;
-    public float invulneffectTimer = 2.0f;
+    public float invulneffectTimer = 3.0f;
     public bool invulneffectcheck = false;
+    public GameObject timerbar;
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<CharacterStats>();
@@ -21,33 +22,43 @@ public class OneHPNoDie : MonoBehaviour
     {
         if (player.invul)
         {
+            TimerBar slider = timerbar.GetComponent<TimerBar>();
+            slider.SetMaxBar(maxInvulnTimer);
             InvulnTimer -= Time.deltaTime;
-            invulneffectTimer -= Time.deltaTime;
-            //Debug.Log(InvulnTimer);
+            slider.SetBar(InvulnTimer);
            if (InvulnTimer <= 0)
-            {
-                InvulnTimer = maxInvulnTimer;
-                player.invul = false;
-                Destroy(gameObject);
-            }
-           if (invulneffectTimer <= 0)
-            {
-                invulneffectcheck = false;
-            }
+           {
+               timerbar.SetActive(false);
+               InvulnTimer = maxInvulnTimer;
+               player.invul = false;
+           }
+           if (InvulnTimer <= maxInvulnTimer - invulneffectTimer)
+           {
+               invulneffectcheck = false;
+           }
         }
 
-        if (invulneffectcheck == true) ShowInv();
-        else if (invulneffectcheck == false) StopInv();
-    }
+        if (invulneffectcheck == true)
+        {
+            showinvuln.Showinvuln();
+        }
+        else if (invulneffectcheck == false)
+        {
+            showinvuln.Stopinvuln();
+        }
+     }
 
     private void OnTriggerEnter(Collider other)
     {
-        player.invul = true;
-        invulneffectcheck = true;
-        //Debug.Log("Invulnerable");
-        transform.position = new Vector3(0, -10, 0);
-        //Invoke(gameobject.Destroy(), 3f);
-        //Destroy(gameObject);
+        if (other.CompareTag("Player"))
+        {
+            player.invul = true;
+            invulneffectcheck = true;
+            InvulnTimer = maxInvulnTimer;
+            timerbar.SetActive(true);
+            transform.position = new Vector3(0, 100, 0);
+            Destroy(gameObject , maxInvulnTimer);
+        }
     }
 
     public void ShowInv()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollectHealthCubes : MonoBehaviour
 {
     public ShowHealed showhealed;
-    private float showhealedtimer = 2.0f;
+    private float showhealedtimer = 3.0f;
     public bool showheal = false;
     public AudioSource collectionSound;
     private PlayerStats player;
@@ -18,12 +18,11 @@ public class CollectHealthCubes : MonoBehaviour
     {
         if (showheal == true)
         {
-            Debug.Log("show screen");
+            //Debug.Log("show screen");
             showhealedtimer -= Time.deltaTime;
             if (showhealedtimer <= 0)
             {
                 showheal = false;
-                Destroy(gameObject);
             }
         }
 
@@ -33,13 +32,15 @@ public class CollectHealthCubes : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //showhealed.Showhealed();
-        showheal = true;
-        collectionSound.Play();
-        player.CurrentHealth += 1;
-        player.Heal(1);
-        transform.position = new Vector3(0, -10, 0);
-        //Destroy(gameObject);
-        //Debug.Log("Health+1");
+        if (other.CompareTag("Player"))
+        {
+            showheal = true;
+            collectionSound.Play();
+            player.CurrentHealth += 1;
+            player.Heal(1);
+            transform.position = new Vector3(0, -10, 0);
+            Destroy(gameObject,showhealedtimer);
+        }
     }
     public void Showheal()
     {

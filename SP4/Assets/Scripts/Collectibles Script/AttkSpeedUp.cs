@@ -11,8 +11,9 @@ public class AttkSpeedUp : MonoBehaviour
     public float attkSpeedTimer = 10f;
     public bool attkUp = false;
     float maxTimer;
-    public float ASeffectTimer = 2.0f;
+    public float ASeffectTimer = 3.0f;
     public bool ASeffectCheck = false;
+    public GameObject timerbar;
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,7 +27,10 @@ public class AttkSpeedUp : MonoBehaviour
     {
         if (attkUp)
         {
+            TimerBar slider = timerbar.GetComponent<TimerBar>();
+            slider.SetMaxBar(maxTimer);
             attkSpeedTimer -= Time.deltaTime;
+            slider.SetBar(attkSpeedTimer);
             ASeffectTimer -= Time.deltaTime;
             //Debug.Log(attkSpeedTimer);
             if (attkSpeedTimer <= 0)
@@ -34,7 +38,7 @@ public class AttkSpeedUp : MonoBehaviour
                 attkSpeedTimer = maxTimer;
                 animator.speed = 1f;
                 attkUp = false;
-                Destroy(gameObject);
+                timerbar.SetActive(false);
             }
             if (ASeffectTimer <= 0)
             {
@@ -51,6 +55,8 @@ public class AttkSpeedUp : MonoBehaviour
         attkUp = true;
         ASeffectCheck = true;
         transform.position = new Vector3(0, -10, 0);
+        Destroy(gameObject,maxTimer);
+        timerbar.SetActive(true);
         //Debug.Log("Speedup");
     }
 
