@@ -491,6 +491,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4726601229718708042, guid: edd9c516779e9ef4eb9739dc81a7a41c, type: 3}
+      propertyPath: hasShield
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7774954707307631707, guid: edd9c516779e9ef4eb9739dc81a7a41c, type: 3}
       propertyPath: m_Name
       value: FlyingRangedEnemy (1)
