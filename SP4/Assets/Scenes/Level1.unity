@@ -3829,6 +3829,10 @@ PrefabInstance:
       propertyPath: grappling
       value: 
       objectReference: {fileID: 1247752041}
+    - target: {fileID: 2457324812050148938, guid: b3ce9555d6037d1449edab7c6b111817, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2457324813278505901, guid: b3ce9555d6037d1449edab7c6b111817, type: 3}
       propertyPath: owner
       value: 
