@@ -287,7 +287,7 @@ MonoBehaviour:
   wallRunCameraTilt: 0
   crouchSpeed: 3
   weapon: {fileID: 0}
-  FOV_change: 0.5
+  FOV_change: 0.2
   pickedUpProjPU: 0
 --- !u!114 &4918836984031775284
 MonoBehaviour:
