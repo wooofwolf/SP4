@@ -252,7 +252,6 @@ public class PlayerMovement : MonoBehaviour
 
         if ((grounded || isWallRunning) && rb.velocity.magnitude > 0.5f)
         {
-            Debug.Log(rb.velocity.magnitude);
             FindObjectOfType<AudioManager>().SetPitch("Running", 1f + rb.velocity.magnitude * 0.02f);
             // Play audio clip
             FindObjectOfType<AudioManager>().PlayUpdateLoop("Running");
