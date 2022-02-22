@@ -6,12 +6,11 @@ public class ProjectilePowerups : MonoBehaviour
 {
     public showProj ShowProj;
     PlayerMovement player;
-    //public bool pickedUp = false;
     public float projTimer;
     public float maxProjTimer;
     public float projeffectTimer = 2.0f;
     public bool projeffectCheck = false;
-    // Start is called before the first frame update
+    public GameObject projTimerBar;
     void Awake()
     {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
@@ -23,35 +22,44 @@ public class ProjectilePowerups : MonoBehaviour
     {
         if (player.pickedUpProjPU)
         {
+            TimerBar slider = projTimerBar.GetComponent<TimerBar>();
+            slider.SetMaxBar(maxProjTimer);
             projTimer -= Time.deltaTime;
-            projeffectTimer -= Time.deltaTime;
+            slider.SetBar(projTimer);
             if (projTimer <= 0)
             {
+                projTimerBar.SetActive(false);
                 projTimer = maxProjTimer;
                 player.pickedUpProjPU = false;
-                Destroy(gameObject);
             }
-            if (projeffectTimer <= 0)
+            if (projTimer <= maxProjTimer - projeffectTimer)
             {
                 projeffectCheck = false;
             }
         }
 
-        if (projeffectCheck == true) showProj();
-        else if (projeffectCheck == false) stopProj();
+        if (projeffectCheck == true)
+        {
+            ShowProj.showproj();
+        }
+        else if (projeffectCheck == false)
+        {
+            ShowProj.stopproj();
+        }
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        player.pickedUpProjPU = true;
-        projeffectCheck = true;
-        transform.position = new Vector3(0, 100, 0);
-    }
-
-    public void ShootProj()
-    {
-
+        if (other.CompareTag("Player"))
+        {
+            player.pickedUpProjPU = true;
+            projeffectCheck = true;
+            projTimer = maxProjTimer;
+            projTimerBar.SetActive(true);
+            transform.position = new Vector3(0, 100, 0);
+            Destroy(gameObject, maxProjTimer);
+        }
     }
 
     public void showProj()
