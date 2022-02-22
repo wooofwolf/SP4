@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     private GameObject shield;
     private Vector3 walkPoint;
     private bool walkPointSet;
+    private float originalY;
 
     // Start is called before the first frame update
     private void Awake()
@@ -45,6 +46,7 @@ public class EnemyController : MonoBehaviour
         {
             shield.SetActive(true);
         }
+        originalY = transform.position.y;
     }
 
     // Update is called once per frame
@@ -54,7 +56,7 @@ public class EnemyController : MonoBehaviour
         if (flying)
         {
             float newY = Mathf.Sin(Time.time * 2f);
-            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+            transform.position = new Vector3(transform.position.x, newY + originalY, transform.position.z);
         }
 
         float distance = Vector3.Distance(player.position, transform.position);
