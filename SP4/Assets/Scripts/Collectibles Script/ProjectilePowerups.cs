@@ -8,7 +8,7 @@ public class ProjectilePowerups : MonoBehaviour
     PlayerMovement player;
     public float projTimer;
     public float maxProjTimer;
-    public float projeffectTimer = 2.0f;
+    public float projeffectTimer = 3.0f;
     public bool projeffectCheck = false;
     public GameObject projTimerBar;
     void Awake()

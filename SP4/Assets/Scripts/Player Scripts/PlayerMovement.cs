@@ -312,7 +312,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             //sidewards wallhopping
-            if (isWallRight || isWallLeft && Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) rb.AddForce(-orientation.up * jumpForce * 1f);
+            if (isWallRight || isWallLeft && Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) rb.AddForce(-orientation.up * jumpForce * .5f);
             if (isWallRight && Input.GetKey(KeyCode.A)) rb.AddForce(-orientation.right * jumpForce * 3.2f); rb.AddForce(Vector3.up * jumpForce * 0.3f);
             if (isWallLeft && Input.GetKey(KeyCode.D)) rb.AddForce(orientation.right * jumpForce * 3.2f); rb.AddForce(Vector3.up * jumpForce * 0.3f);
 

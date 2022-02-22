@@ -8,7 +8,7 @@ public class TripleJump : MonoBehaviour
     public float tripJumpTimer = 15f;
     private float maxTimer;
     public ShowTJ showTj;
-    public float tjeffectTime = 2.0f;
+    public float tjeffectTime = 3.0f;
     public bool tjeffectscheck = false;
     public GameObject tallJumpTimerBar;
     private void Awake()

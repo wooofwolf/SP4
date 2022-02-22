@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollectHealthCubes : MonoBehaviour
 {
     public ShowHealed showhealed;
-    private float showhealedtimer = 2.0f;
+    private float showhealedtimer = 3.0f;
     public bool showheal = false;
     public AudioSource collectionSound;
     private PlayerStats player;
