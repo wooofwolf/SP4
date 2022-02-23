@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CollectScoreSphere : MonoBehaviour
 {
-    public AudioSource collectionSound;
     bool collected = false;
     private void OnTriggerEnter(Collider other)
     {
@@ -12,7 +11,8 @@ public class CollectScoreSphere : MonoBehaviour
         {
             if (collected == false)
             {
-                collectionSound.Play();
+                // Play audio clip
+                FindObjectOfType<AudioManager>().Play("Collection");
                 ScoreSystem.Score = ScoreSystem.Score + 20;
                 //gameObject.SetActive(false);
                 Destroy(gameObject);
