@@ -5839,6 +5839,10 @@ PrefabInstance:
       propertyPath: playerDeath
       value: 
       objectReference: {fileID: 1203061581}
+    - target: {fileID: 7756043238254640030, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 1247752040}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
 --- !u!4 &761114158 stripped
