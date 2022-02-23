@@ -11,11 +11,15 @@ public class PlayerStats : CharacterStats
     public bool invul = false;
     public bool tallJump = false;
     public bool tjeffectscheck = false;
+    public bool invulneffectcheck = false;
 
     public float tallJumpTimer = 15f;
     public float maxTallJumpTimer;
-
+    public float tallJumpForce = 1300f;
     public float tjeffectTime = 3.0f;
+    public float InvulnTimer = 3.0f;
+    public float maxInvulnTimer;
+    public float invulneffectTimer = 3f;
 
     public ShowTJ showTj;
 
@@ -23,12 +27,7 @@ public class PlayerStats : CharacterStats
     public HealthCircle healthbar;
     PlayerMovement movement;
     public GameObject tallJumpTimerBar;
-
     public ShowInvuln showinvuln;
-    public float InvulnTimer = 3.0f;
-    public float maxInvulnTimer;
-    public float invulneffectTimer = 3f;
-    public bool invulneffectcheck = false;
     public GameObject invulnTimerbar;
 
     private void Awake()
@@ -49,7 +48,7 @@ public class PlayerStats : CharacterStats
         {
             DoubleJumps = 0;
             movement = GetComponent<PlayerMovement>();
-            movement.jumpForce = 1100f;
+            movement.jumpForce = tallJumpForce;
 
             tjeffectscheck = true;
             tallJumpTimerBar.SetActive(true);
