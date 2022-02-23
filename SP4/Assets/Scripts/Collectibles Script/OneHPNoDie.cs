@@ -9,7 +9,7 @@ public class OneHPNoDie : MonoBehaviour
     public float InvulnTimer = 3.0f;
     private float maxInvulnTimer;
     private CharacterStats player;
-    public float invulneffectTimer = 2.0f;
+    public float invulneffectTimer = 3.0f;
     public bool invulneffectcheck = false;
     public GameObject timerbar;
     private void Awake()

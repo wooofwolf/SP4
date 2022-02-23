@@ -11,7 +11,7 @@ public class AttkSpeedUp : MonoBehaviour
     public float attkSpeedTimer = 10f;
     public bool attkUp = false;
     float maxTimer;
-    public float ASeffectTimer = 2.0f;
+    public float ASeffectTimer = 3.0f;
     public bool ASeffectCheck = false;
     public GameObject timerbar;
     // Start is called before the first frame update

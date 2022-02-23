@@ -7,6 +7,7 @@ public class DoorScript : MonoBehaviour
     public GameObject inputMethod;
     public float doorSpeed = 4.0f;
     public AudioSource open, close;
+    public float yOffset;
     bool doorStatus;
 
     Vector3 closedPosition;
@@ -18,7 +19,7 @@ public class DoorScript : MonoBehaviour
     void Start()
     {
         closedPosition = gameObject.transform.position;
-        openPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 2.5f, gameObject.transform.position.z);
+        openPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + yOffset, gameObject.transform.position.z);
     }
 
     // Update is called once per frame
