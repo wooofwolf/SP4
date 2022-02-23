@@ -23,14 +23,14 @@ public class MeleeWeapons : MonoBehaviour
         if (((other.tag == "Enemy" && owner.tag == "Player") || (other.tag == "Player" && owner.tag == "Enemy")) && !damageTaken && isAttacking)
         {
             CharacterStats stats = other.GetComponent<CharacterStats>();
-            if (!stats.invul || (stats.invul && stats.CurrentHealth > 1))
-            {
+            //if (!stats.invul || (stats.invul && stats.CurrentHealth > 1))
+            //{
                 stats.TakeDamage(stats.Damage);
-            }
-            else if (stats.invul && stats.CurrentHealth == 1)
-            {
-                stats.TakeDamage(0);
-            }
+            //}
+            //else if (stats.invul && stats.CurrentHealth == 1)
+            //{
+            //    stats.TakeDamage(0);
+            //}
             damageTaken = true;
         }
     }

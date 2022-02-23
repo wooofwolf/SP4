@@ -171,6 +171,8 @@ public class EnemyController : MonoBehaviour
     public void DisableShield()
     {
         shield.SetActive(false);
+
+        GameObject.Find("Player").GetComponent<Rigidbody>().AddForce(new Vector3(0, 1, 0));
     }
 
     void SearchWalkPoint()
