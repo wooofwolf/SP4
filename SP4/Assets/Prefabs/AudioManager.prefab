@@ -84,3 +84,8 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: Collection
+    clip: {fileID: 8300000, guid: 613c543f616a8bf4d9ddff61acf2d24f, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
