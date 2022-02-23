@@ -89,3 +89,8 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     source: {fileID: 0}
+  - name: ShieldBreak
+    clip: {fileID: 8300000, guid: 9cc393552048a7b4fa9d67aacde0018f, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}

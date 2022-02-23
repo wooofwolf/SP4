@@ -21,7 +21,10 @@ public class EnemyStats : CharacterStats
 
             GameObject player = GameObject.Find("Player");
             Transform orientation = player.transform.Find("Orientation");
-            
+
+            // Play audio clip
+            FindObjectOfType<AudioManager>().Play("ShieldBreak");
+
             player.GetComponent<Rigidbody>().AddForce(new Vector3(-orientation.forward.x * 1000, 500, -orientation.forward.z * 1000));
         }
         else
