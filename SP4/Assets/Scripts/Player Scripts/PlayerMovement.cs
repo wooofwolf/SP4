@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
     private float max_FOV = 90;
     private float start_FOV = 75;
 
-    public bool pickedUpProjPU = false;
+    
 
     void Awake()
     {
@@ -133,13 +133,13 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
-        PlayerRanged projPowerup = GameObject.Find("Player").GetComponent<PlayerRanged>();
+        PlayerRanged projPowerup = GetComponent<PlayerRanged>();
         // Attack
-        if (Input.GetMouseButtonDown(0) && !pickedUpProjPU)
+        if (Input.GetMouseButtonDown(0) && !projPowerup.pickedUpProjPU)
         {
             sword.Attack();
         }
-        if (Input.GetMouseButtonDown(0) && pickedUpProjPU)
+        if (Input.GetMouseButtonDown(0) && projPowerup.pickedUpProjPU)
         {
             projPowerup.ShootProj();
         }
