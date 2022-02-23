@@ -13,16 +13,17 @@ public class Minimap : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Level2")
 
         {
-            newPosition.y = player.position.y + 10;
-        }
-        else
-        {
-
             newPosition.y = player.position.y + 5;
         }
-        newPosition.y = player.position.y + 3;
+        else if (SceneManager.GetActiveScene().name == "Level1")
+        {
+            newPosition.y = player.position.y + 3;
+        }
+        else if (SceneManager.GetActiveScene().name == "Level3")
+        {
+            newPosition.y = player.position.y + 3;
+        }
         transform.position = newPosition;
-
         transform.rotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
     }
 }
