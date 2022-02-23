@@ -8,10 +8,6 @@ public class ScoreSystem : MonoBehaviour
     public static int Score;
     void Update()
     {
-        scoreText.GetComponent<Text>().text = "Noob\nScore:" + Score;
-        if (Score >20)
-        {
-            scoreText.GetComponent<Text>().text = "Scrub\nScore:" + Score;
-        }
+        scoreText.GetComponent<Text>().text = "SCORE:" + Score;
     }
 }

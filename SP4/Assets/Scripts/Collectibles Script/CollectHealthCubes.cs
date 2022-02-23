@@ -7,9 +7,7 @@ public class CollectHealthCubes : MonoBehaviour
     public ShowHealed showhealed;
     private float showhealedtimer = 2.0f;
     public bool showheal = false;
-    public AudioSource collectionSound;
     private PlayerStats player;
-    Healthbar healthbar;
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<PlayerStats>();
@@ -35,8 +33,9 @@ public class CollectHealthCubes : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             showheal = true;
-            collectionSound.Play();
-            player.CurrentHealth += 1;
+            // Play audio clip
+            FindObjectOfType<AudioManager>().Play("Collection");
+            //player.CurrentHealth += 1;
             player.Heal(1);
             transform.position = new Vector3(0, -10, 0);
             Destroy(gameObject,showhealedtimer);

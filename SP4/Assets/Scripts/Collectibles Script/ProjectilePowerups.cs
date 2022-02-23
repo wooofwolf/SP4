@@ -7,14 +7,14 @@ public class ProjectilePowerups : MonoBehaviour
     public showProj ShowProj;
     PlayerMovement player;
     public float projTimer;
-    public float maxProjTimer;
+    float maxProjTimer;
     public float projeffectTimer = 2.0f;
     public bool projeffectCheck = false;
     public GameObject projTimerBar;
     void Awake()
     {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        projTimer = maxProjTimer;
+        maxProjTimer = projTimer;
     }
 
     // Update is called once per frame
