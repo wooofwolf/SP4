@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ShieldFadeScript : MonoBehaviour
 {
-    public Text test;
+    public Image image;
     Color color;
 
     public float speed = 10;
@@ -15,7 +15,7 @@ public class ShieldFadeScript : MonoBehaviour
 
     private void Start()
     {
-        color = test.color;
+        color = image.color;
     }
 
     public void ShowEffect()
@@ -42,7 +42,7 @@ public class ShieldFadeScript : MonoBehaviour
 
         if (fadeIn)
         {
-            if (test.color.a < 1)
+            if (image.color.a < 1)
             {
                 color.a += speed * Time.deltaTime;
 
@@ -55,7 +55,7 @@ public class ShieldFadeScript : MonoBehaviour
 
         if (fadeOut)
         {
-            if (test.color.a >= 0)
+            if (image.color.a >= 0)
             {
                 color.a -= speed * Time.deltaTime;
 
@@ -66,6 +66,6 @@ public class ShieldFadeScript : MonoBehaviour
             }
         }
 
-        test.color = color;
+        image.color = color;
     }
 }
