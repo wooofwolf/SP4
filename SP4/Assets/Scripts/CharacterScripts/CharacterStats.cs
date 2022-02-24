@@ -25,7 +25,7 @@ public class CharacterStats : MonoBehaviour
             Die();
         }
     }
-    public void Heal(int health)
+    public virtual void Heal(int health)
     {
         CurrentHealth += health;
         //healthbar.SetHealth(CurrentHealth);
