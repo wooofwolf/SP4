@@ -12,6 +12,8 @@ public class PlayerStats : CharacterStats
     public bool tallJump = false;
     public bool tjeffectscheck = false;
     public bool invulneffectcheck = false;
+    public bool showheal = false;
+    bool healed = false;
 
     public float tallJumpTimer = 15f;
     public float maxTallJumpTimer;
@@ -21,16 +23,22 @@ public class PlayerStats : CharacterStats
     public float maxInvulnTimer;
     public float invulneffectTimer = 3f;
 
+    public float showhealedtimer = 3.0f;
+    //public float maxShowHealedTimer;
+
     public ShowTJ showTj;
 
+    public GameObject tallJumpTimerBar;
+    public GameObject invulnTimerbar;
     public PlayerDeath playerDeath;
     public HealthCircle healthbar;
     public HealthFadeScript healthFade;
-    PlayerMovement movement;
-    public GameObject tallJumpTimerBar;
     public ShowInvuln showinvuln;
     public ShieldFadeScript shieldFade;
-    public GameObject invulnTimerbar;
+    public ShowHealed showhealed;
+    PlayerMovement movement;
+
+
 
     private void Awake()
     {
@@ -98,11 +106,22 @@ public class PlayerStats : CharacterStats
             }
             if (InvulnTimer <= maxInvulnTimer - invulneffectTimer)
             {
-                Debug.Log("stop showing");
+                //Debug.Log("stop showing");
                 invulneffectcheck = false;
             }
         }
-
+        if (showheal == true)
+        {
+            ShowHeal();
+            Heal(1);
+            //showhealedtimer -= Time.deltaTime;
+            Invoke("StopHeal", showhealedtimer);
+            showheal = false;
+            //if (showhealedtimer <= 0)
+            //{
+            //    showheal = false;
+            //}
+        }
         if (invulneffectcheck)
         {
             showinvuln.Showinvuln();
@@ -120,11 +139,20 @@ public class PlayerStats : CharacterStats
         {
             showTj.stoptj();
         }
+
+        //if (showheal == true)
+        //{ 
+        //    Showheal(); 
+        //}
+        //else if (showheal == false) 
+        //{ 
+        //    Stopheal(); 
+        //}
     }
 
     public override void Heal(int health)
     {
-        Debug.Log("Healed");
+        //Debug.Log("Healed");
         if (CurrentHealth <= 1)
         {
             healthFade.DisableContinuousPulse();
@@ -184,5 +212,14 @@ public class PlayerStats : CharacterStats
     public void StopInv()
     {
         showinvuln.Stopinvuln();
+    }
+    public void ShowHeal()
+    {
+        showhealed.Showhealed();
+    }
+
+    public void StopHeal()
+    {
+        showhealed.Stophealed();
     }
 }
