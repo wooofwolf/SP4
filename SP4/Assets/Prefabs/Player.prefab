@@ -288,7 +288,8 @@ MonoBehaviour:
   wallRunCameraTilt: 0
   crouchSpeed: 3
   weapon: {fileID: 0}
-  FOV_change: 0.2
+  FOV_change: 0.7
+  dashFade: {fileID: 0}
 --- !u!114 &4918836984031775284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,18 +312,21 @@ MonoBehaviour:
   invul: 0
   tallJump: 0
   tjeffectscheck: 0
+  invulneffectcheck: 0
   tallJumpTimer: 15
   maxTallJumpTimer: 0
+  tallJumpForce: 1300
   tjeffectTime: 3
-  showTj: {fileID: 0}
-  playerDeath: {fileID: 0}
-  healthbar: {fileID: 0}
-  tallJumpTimerBar: {fileID: 0}
-  showinvuln: {fileID: 0}
   InvulnTimer: 3
   maxInvulnTimer: 0
   invulneffectTimer: 3
-  invulneffectcheck: 0
+  showTj: {fileID: 0}
+  playerDeath: {fileID: 0}
+  healthbar: {fileID: 0}
+  healthFade: {fileID: 0}
+  tallJumpTimerBar: {fileID: 0}
+  showinvuln: {fileID: 0}
+  shieldFade: {fileID: 0}
   invulnTimerbar: {fileID: 0}
 --- !u!114 &3985395185840618006
 MonoBehaviour:

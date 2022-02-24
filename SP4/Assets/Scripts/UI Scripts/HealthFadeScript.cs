@@ -5,17 +5,19 @@ using UnityEngine.UI;
 
 public class HealthFadeScript : MonoBehaviour
 {
-    public Text test;
+    public Image image;
     Color color;
 
-    public float speed = 5f;
+    public float speed;
+    public float pulseDelay;
+    public float repeatingDelay;
 
     private bool fadeIn = false;
     private bool fadeOut = false;
 
     private void Start()
     {
-        color = test.color;
+        color = image.color;
     }
 
     public void ShowEffect()
@@ -33,12 +35,12 @@ public class HealthFadeScript : MonoBehaviour
     public void PulseEffectOnce()
     {
         Invoke("ShowEffect", 0f);
-        Invoke("HideEffect", 0.3f);
+        Invoke("HideEffect", pulseDelay);
     }
 
     public void PulseEffectContinuous()
     {
-        InvokeRepeating("PulseEffectOnce", 0.2f, 1f);
+        InvokeRepeating("PulseEffectOnce", 0.2f, repeatingDelay);
     }
 
     public void DisableOnePulse()
@@ -58,7 +60,7 @@ public class HealthFadeScript : MonoBehaviour
 
         if (fadeIn)
         {
-            if (test.color.a < 1)
+            if (image.color.a < 1)
             {
                 color.a += speed * Time.deltaTime;
 
@@ -71,7 +73,7 @@ public class HealthFadeScript : MonoBehaviour
         
         if (fadeOut)
         {
-            if (test.color.a >= 0)
+            if (image.color.a >= 0)
             {
                 color.a -= speed * Time.deltaTime;
 
@@ -82,6 +84,6 @@ public class HealthFadeScript : MonoBehaviour
             }
         }
 
-        test.color = color;
+        image.color = color;
     }
 }
