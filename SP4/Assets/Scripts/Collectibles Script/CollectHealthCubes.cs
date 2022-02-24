@@ -7,6 +7,7 @@ public class CollectHealthCubes : MonoBehaviour
     public ShowHealed showhealed;
     private float showhealedtimer = 3.0f;
     public bool showheal = false;
+    bool healed = false;
     private PlayerStats player;
     private void Awake()
     {
@@ -30,7 +31,7 @@ public class CollectHealthCubes : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //showhealed.Showhealed();
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !healed)
         {
             showheal = true;
             // Play audio clip
@@ -38,6 +39,7 @@ public class CollectHealthCubes : MonoBehaviour
             //player.CurrentHealth += 1;
             player.Heal(1);
             transform.position = new Vector3(0, -10, 0);
+            healed = true;
             Destroy(gameObject,showhealedtimer);
         }
     }
