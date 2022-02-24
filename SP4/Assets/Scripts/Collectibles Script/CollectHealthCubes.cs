@@ -3,53 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CollectHealthCubes : MonoBehaviour
-{
-    public ShowHealed showhealed;
-    private float showhealedtimer = 3.0f;
-    public bool showheal = false;
-    bool healed = false;
-    private PlayerStats player;
-    private void Awake()
-    {
-        player = GameObject.Find("Player").GetComponent<PlayerStats>();
-    }
-    private void Update()
-    {
-        if (showheal == true)
-        {
-            //Debug.Log("show screen");
-            showhealedtimer -= Time.deltaTime;
-            if (showhealedtimer <= 0)
-            {
-                showheal = false;
-            }
-        }
-
-        if(showheal == true) Showheal();
-        else if (showheal == false) Stopheal();
-    }
+{ 
     private void OnTriggerEnter(Collider other)
     {
         //showhealed.Showhealed();
-        if (other.CompareTag("Player") && !healed)
-        {
-            showheal = true;
-            // Play audio clip
+        if (other.CompareTag("Player"))
+        {    
+            //Debug.Log("show screen");
             FindObjectOfType<AudioManager>().Play("Collection");
-            //player.CurrentHealth += 1;
-            player.Heal(1);
-            transform.position = new Vector3(0, -10, 0);
-            healed = true;
-            Destroy(gameObject,showhealedtimer);
+            other.GetComponent<PlayerStats>().showheal = true;
+            Destroy(gameObject);
         }
     }
-    public void Showheal()
-    {
-        showhealed.Showhealed();
-    }
-
-    public void Stopheal()
-    {
-        showhealed.Stophealed();
-    }
+    
 }
