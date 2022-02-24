@@ -11,24 +11,25 @@ public class PlayerStats : CharacterStats
     public bool invul = false;
     public bool tallJump = false;
     public bool tjeffectscheck = false;
+    public bool invulneffectcheck = false;
 
     public float tallJumpTimer = 15f;
     public float maxTallJumpTimer;
-
+    public float tallJumpForce = 1300f;
     public float tjeffectTime = 3.0f;
+    public float InvulnTimer = 3.0f;
+    public float maxInvulnTimer;
+    public float invulneffectTimer = 3f;
 
     public ShowTJ showTj;
 
     public PlayerDeath playerDeath;
     public HealthCircle healthbar;
+    public HealthFadeScript healthFade;
     PlayerMovement movement;
     public GameObject tallJumpTimerBar;
-
     public ShowInvuln showinvuln;
-    public float InvulnTimer = 3.0f;
-    public float maxInvulnTimer;
-    public float invulneffectTimer = 3f;
-    public bool invulneffectcheck = false;
+    public ShieldFadeScript shieldFade;
     public GameObject invulnTimerbar;
 
     private void Awake()
@@ -43,13 +44,15 @@ public class PlayerStats : CharacterStats
         if (CurrentHealth <= 0)
         {
             Die();
-          
+            healthFade.DisableOnePulse();
+            healthFade.DisableContinuousPulse();
         }
+
         if (tallJump)
         {
             DoubleJumps = 0;
             movement = GetComponent<PlayerMovement>();
-            movement.jumpForce = 1100f;
+            movement.jumpForce = tallJumpForce;
 
             tjeffectscheck = true;
             tallJumpTimerBar.SetActive(true);
@@ -80,6 +83,7 @@ public class PlayerStats : CharacterStats
         {
             invulneffectcheck = true;
 
+            shieldFade.ShowEffect();
             invulnTimerbar.SetActive(true);
             TimerBar invulnSlider = invulnTimerbar.GetComponent<TimerBar>();
             invulnSlider.SetMaxBar(maxInvulnTimer);
@@ -88,6 +92,7 @@ public class PlayerStats : CharacterStats
 
             if (InvulnTimer <= 0)
             {
+                shieldFade.HideEffect();
                 invulnTimerbar.SetActive(false);
                 invul = false;
             }
@@ -117,6 +122,23 @@ public class PlayerStats : CharacterStats
         }
     }
 
+    public override void Heal(int health)
+    {
+        Debug.Log("Healed");
+        if (CurrentHealth <= 1)
+        {
+            healthFade.DisableContinuousPulse();
+            Debug.Log("Pulse disabled");    
+        }
+
+        CurrentHealth += health;
+        //healthbar.SetHealth(CurrentHealth);
+        if (CurrentHealth > MaxHealth)
+        {
+            CurrentHealth = MaxHealth;
+        }
+    }
+
     public override void Die()
     {
         playerDeath.ShowDeath();
@@ -139,6 +161,15 @@ public class PlayerStats : CharacterStats
         if (!invul || (invul && CurrentHealth > 1))
         {
             base.TakeDamage(damage);
+            if (CurrentHealth == 1)
+            {
+                healthFade.PulseEffectContinuous();
+            }
+            else
+            {
+
+                healthFade.PulseEffectOnce();
+            }
         }
         else if (invul && CurrentHealth == 1)
         {

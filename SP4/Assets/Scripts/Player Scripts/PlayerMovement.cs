@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
     private float max_FOV = 90;
     private float start_FOV = 75;
 
-    
+    public DashFadeScript dashFade;
 
     void Awake()
     {
@@ -327,6 +327,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (readyToDash)
         {
+            dashFade.PulseEffectOnce();
 
             //Vector2 mag = FindVelRelativeToLook();
             //float xMag = mag.x, yMag = mag.y;
