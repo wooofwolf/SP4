@@ -1534,9 +1534,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1231846366}
     - target: {fileID: 4918836984031775284, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
+      propertyPath: healthFade
+      value: 
+      objectReference: {fileID: 2075388864}
+    - target: {fileID: 4918836984031775284, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
       propertyPath: shieldFade
       value: 
       objectReference: {fileID: 1138430396}
+    - target: {fileID: 4918836984031775284, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
+      propertyPath: showhealed
+      value: 
+      objectReference: {fileID: 695178595}
     - target: {fileID: 4918836984031775284, guid: 37e97b20e79ce7243a8c017fa14c8876, type: 3}
       propertyPath: showinvuln
       value: 
@@ -4161,6 +4169,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3850999719790742901, guid: 0b73d3f98792d4243b323db72ed94d92, type: 3}
   m_PrefabInstance: {fileID: 1540330709}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2075388864 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2414571287385948225, guid: 0b73d3f98792d4243b323db72ed94d92, type: 3}
+  m_PrefabInstance: {fileID: 1540330709}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075388862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017a7e7033b776d48b4793355012bf38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2106623301
 GameObject:
   m_ObjectHideFlags: 0
