@@ -10,14 +10,18 @@ public class Minimap : MonoBehaviour
     void LateUpdate()
     {
         Vector3 newPosition = player.position;
-        if (SceneManager.GetActiveScene().name == "Level2")
-
+        
+        if (SceneManager.GetActiveScene().name == "TutorialScene")
         {
-            newPosition.y = player.position.y + 5;
+            newPosition.y = player.position.y + 3;
         }
         else if (SceneManager.GetActiveScene().name == "Level1")
         {
             newPosition.y = player.position.y + 3;
+        }
+        else if (SceneManager.GetActiveScene().name == "Level2")
+        {
+            newPosition.y = player.position.y + 5;
         }
         else if (SceneManager.GetActiveScene().name == "Level3")
         {
