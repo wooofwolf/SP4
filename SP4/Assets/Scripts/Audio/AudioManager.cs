@@ -8,6 +8,10 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        // Play background music
+        GameObject.FindGameObjectWithTag("Music").GetComponent<BackgroundMusic>().PlayMusic();
+
+        // Get SFXs
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
