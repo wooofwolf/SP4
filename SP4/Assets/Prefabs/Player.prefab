@@ -313,6 +313,7 @@ MonoBehaviour:
   tallJump: 0
   tjeffectscheck: 0
   invulneffectcheck: 0
+  showheal: 0
   tallJumpTimer: 15
   maxTallJumpTimer: 0
   tallJumpForce: 1300
@@ -320,14 +321,16 @@ MonoBehaviour:
   InvulnTimer: 3
   maxInvulnTimer: 0
   invulneffectTimer: 3
+  showhealedtimer: 3
   showTj: {fileID: 0}
+  tallJumpTimerBar: {fileID: 0}
+  invulnTimerbar: {fileID: 0}
   playerDeath: {fileID: 0}
   healthbar: {fileID: 0}
   healthFade: {fileID: 0}
-  tallJumpTimerBar: {fileID: 0}
   showinvuln: {fileID: 0}
   shieldFade: {fileID: 0}
-  invulnTimerbar: {fileID: 0}
+  showhealed: {fileID: 0}
 --- !u!114 &3985395185840618006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,7 +352,7 @@ MonoBehaviour:
   pickedUpProjPU: 0
   bullet: {fileID: 1189210395326970894, guid: 80912aa16ba9c1e48afb20675692bf45, type: 3}
   orientation: {fileID: 4289473199804389068}
-  shootForce: 10
+  shootForce: 100
   reloadTime: 1
   canShoot: 1
 --- !u!114 &7756043238254640030
