@@ -47,5 +47,5 @@ MonoBehaviour:
   damageTaken: 0
   owner: {fileID: 0}
   bullet: {fileID: 0}
-  shootForce: 0
-  spread: 0
+  shootForce: 50
+  spread: 0.5

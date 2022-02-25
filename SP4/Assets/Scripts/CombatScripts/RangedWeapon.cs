@@ -25,7 +25,7 @@ public class RangedWeapon : MonoBehaviour
         if (!canAttack)
         {
             lr.enabled = true;
-            lr.SetPosition(0, owner.transform.position);
+            lr.SetPosition(0, transform.position);
             lr.SetPosition(1, (target.position - transform.position) * 75);
         }
     }
