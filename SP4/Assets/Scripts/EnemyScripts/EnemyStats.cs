@@ -39,6 +39,8 @@ public class EnemyStats : CharacterStats
 
     public override void Die()
     {
+        // Play audio clip
+        FindObjectOfType<AudioManager>().Play("EnemyDeath");
         Destroy(gameObject);
     }
 }
