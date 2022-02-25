@@ -9914,6 +9914,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4038634126421027178, guid: eaa33fc9e71ce3e44bfc9d6aba81b6f0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -8041933295375320204, guid: eaa33fc9e71ce3e44bfc9d6aba81b6f0, type: 3}
     - target: {fileID: -927199367670048503, guid: eaa33fc9e71ce3e44bfc9d6aba81b6f0, type: 3}
       propertyPath: m_Name
       value: JR-1 mod1 idle
