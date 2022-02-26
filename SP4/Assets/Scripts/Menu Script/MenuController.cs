@@ -20,6 +20,9 @@ public class MenuController : MonoBehaviour
             case 4:
                 SceneManager.LoadScene("TutorialScene");
                 break;
+            case 5:
+                SceneManager.LoadScene("GameEnd");
+                break;
         }
 
     }
