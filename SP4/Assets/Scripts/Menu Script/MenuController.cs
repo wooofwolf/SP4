@@ -15,7 +15,7 @@ public class MenuController : MonoBehaviour
                 SceneManager.LoadScene("MainMenu");
                 break;
             case 3:
-                ExitGame();
+                Application.Quit();
                 break;
             case 4:
                 SceneManager.LoadScene("TutorialScene");
@@ -35,7 +35,7 @@ public class MenuController : MonoBehaviour
     }
     public void ExitGame()
     {
-        //Application.Quit();
+        //
         SceneManager.LoadScene("MainMenu");
     }
 }
