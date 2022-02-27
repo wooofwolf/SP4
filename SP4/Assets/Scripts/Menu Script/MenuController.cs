@@ -18,7 +18,7 @@ public class MenuController : MonoBehaviour
                 ExitGame();
                 break;
             case 4:
-                SceneManager.LoadScene("Level2");
+                SceneManager.LoadScene("TutorialScene");
                 break;
             case 5:
                 SceneManager.LoadScene("GameEnd");
