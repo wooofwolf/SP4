@@ -14,7 +14,6 @@ public class PlayerRanged : MonoBehaviour
     public bool pickedUpProjPU = false;
 
     public GameObject bullet;
-    public Transform orientation;
     public float shootForce = 10f;
     public float reloadTime = 1f;
     float maxReloadTime;
@@ -40,7 +39,6 @@ public class PlayerRanged : MonoBehaviour
         }
         if (pickedUpProjPU)
         {
-            Debug.Log("nice");
             projeffectCheck = true;
             projTimerBar.SetActive(true);
             TimerBar slider = projTimerBar.GetComponent<TimerBar>();
@@ -74,13 +72,8 @@ public class PlayerRanged : MonoBehaviour
         if (canShoot)
         {
             spawnBullet();
-            //GameObject newBullet = Instantiate(bullet, transform.position /*+ transform.forward*/, Quaternion.identity);
             Invoke( "spawnBullet" , 0.1f );
-            //GameObject newBullet2 = Instantiate(bullet, transform.position /*+ transform.forward*/, Quaternion.identity);
 
-            //newBullet.GetComponent<Rigidbody>().AddForce(orientation.forward * shootForce, ForceMode.Impulse);
-            //newBullet1.GetComponent<Rigidbody>().AddForce(orientation.forward * shootForce, ForceMode.Impulse);
-           // newBullet2.GetComponent<Rigidbody>().AddForce(orientation.forward * shootForce, ForceMode.Impulse);
             canShoot = false;
         }
     }
@@ -88,7 +81,7 @@ public class PlayerRanged : MonoBehaviour
     void spawnBullet()
     {
         GameObject bullets = Instantiate(bullet, transform.position, Quaternion.identity);
-        bullets.GetComponent<Rigidbody>().AddForce(orientation.forward * shootForce, ForceMode.Impulse);
+        bullets.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * shootForce, ForceMode.Impulse);
     }
     public void showProj()
     {
