@@ -32,6 +32,11 @@ public class CompleteLevel : MonoBehaviour
                 case 3:
                     SceneManager.LoadSceneAsync("Level3");
                     break;
+                case 4:
+                    Cursor.lockState = CursorLockMode.Confined;
+                    Cursor.visible = true;
+                    SceneManager.LoadSceneAsync("GameEnd");
+                    break;
                 default:
                     Debug.LogError("Cannot load next scene.");
                     break;
