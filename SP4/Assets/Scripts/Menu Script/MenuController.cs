@@ -23,6 +23,9 @@ public class MenuController : MonoBehaviour
             case 5:
                 SceneManager.LoadScene("GameEnd");
                 break;
+            case 6:
+                SceneManager.LoadScene("Level3");
+                break;
         }
 
     }
